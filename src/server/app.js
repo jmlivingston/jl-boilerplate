@@ -69,6 +69,16 @@ switch (environment) {
             four0four.send404(req, res);
         });
         break;
+    case 'qa':
+        console.log('** QA **');
+        app.use(express.static('./client/'));
+        app.use('/bower_components', express.static('./bower_components/'));
+        app.use('/.tmp', express.static('./.tmp/'));
+        app.use('/src/client/', express.static('./client/'));
+        app.use('/app/*', function (req, res, next) {
+            four0four.send404(req, res);
+        });
+        break;
     case 'build':
         console.log('** BUILD **');
         app.use(express.static('./build/'));

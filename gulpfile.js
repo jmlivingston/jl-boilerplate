@@ -220,14 +220,28 @@ gulp.task('heroku', [], function () {
     var delconfig = [].concat(dest + 'server', dest + 'client');
     log('Cleaning: ' + $.util.colors.blue(delconfig));
     del(delconfig, function () {
-        gulp.src([config.srcHeroku + '/**'], {})
+        gulp.src([config.srcHeroku + 'Procfile', config.srcHeroku + '.gitignore'], {})
             .pipe(gulp.dest(dest));
 
-        gulp.src([config.build + '/**'], {
-            base: 'build'
-        })
-            .pipe(gulp.dest(dest + '/client'));
+        gulp.src([config.srcHeroku + args.repo + '/**'], {})
+            .pipe(gulp.dest(dest));
 
+        if (args.repo === 'prod') {
+            gulp.src([config.build + '/**'], {
+                base: 'build'
+            })
+                .pipe(gulp.dest(dest + '/client'));
+        }
+        else {
+            gulp.src('./.tmp/**')
+                .pipe(gulp.dest(dest + '.tmp'));
+
+            gulp.src('./bower.json')
+                .pipe(gulp.dest(dest + '/'));
+
+            gulp.src([config.client + '/**'], {})
+                .pipe(gulp.dest(dest + '/client'));
+        }
         gulp.src([config.serverDir + '/**'], {
             base: 'src/server'
         })

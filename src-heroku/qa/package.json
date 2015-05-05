@@ -1,0 +1,23 @@
+{
+    "name": "jl-boilerplate",
+    "version": "",
+    "description": "",
+    "main": "server.js",
+    "dependencies": {
+        "body-parser": "^1.8.2",
+        "express": "^4.9.3",
+        "firebase": "^2.2.3",
+        "morgan": "^1.1.1",
+        "serve-favicon": "^2.0.1",
+        "stripe": "^3.3.4",
+        "jade": "^1.9.2",
+        "q": "^1.0.1",
+        "bower": "latest"
+    },
+    "scripts": {
+        "postinstall": "bower install",
+        "start": "node server/app.js"
+    },
+    "author": "",
+    "license": ""
+}
