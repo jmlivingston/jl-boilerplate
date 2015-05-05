@@ -1,0 +1,9 @@
+<div ng-controller="AdminSettingsController as vm">
+    <p>{{pageStrings.SettingsTitle}}</p>
+    <select class="form-control" ng-model="vm.limit" ng-options="l as l for l in vm.limits">
+    </select>
+    <br />
+    <button class="btn btn-primary" ng-click="vm.createDummyData()">
+        {{pageStrings.CreateDummyIssues}}
+    </button>
+</div>

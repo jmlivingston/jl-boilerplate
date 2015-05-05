@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/core/login.service.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">app/core/login.service.js</span></h1>
+    <h2>
+        Statements: <span class="metric">25.97% <small>(20 / 77)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">3.85% <small>(1 / 26)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">25.97% <small>(20 / 77)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">app/core/</a> &#187; login.service.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function () {
+    'use strict';
+    angular
+        .module('app.core')
+        .factory('loginService', loginService);
+    loginService.$inject = ['FBURL', '$firebaseAuth', 'dataservice', '$q', '$rootScope', '$http', 'logger', '$location'];
+    /* @ngInject */
+<span class="fstat-no" title="function not covered" >    function loginService(FBURL, $firebaseAuth, dataservice, $q, $rootScope, $http, logger, $location) {</span>
+<span class="cstat-no" title="statement not covered" >        var auth = $firebaseAuth(dataservice.ref());</span>
+<span class="cstat-no" title="statement not covered" >        var listeners = [];</span>
+<span class="cstat-no" title="statement not covered" >        var service = {</span>
+            initialized: false,
+            auth: auth,
+            //user: null,
+            userCreate: userCreate,
+            userGet: userGet,
+            userSet: userSet,
+            userDelete: userDelete,
+            userList: userList,
+            login: login,
+            logout: logout,
+            watch: watch,
+            rootScope: $rootScope
+        };
+<span class="cstat-no" title="statement not covered" >        activate();</span>
+<span class="cstat-no" title="statement not covered" >        return service;</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function activate() {</span>
+<span class="cstat-no" title="statement not covered" >            auth.$onAuth(statusChange);</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function statusChange() {</span>
+<span class="cstat-no" title="statement not covered" >            service.initialized = true;</span>
+<span class="cstat-no" title="statement not covered" >            service.rootScope.user = auth.$getAuth() || null;</span>
+<span class="cstat-no" title="statement not covered" >            if (service.rootScope.user !== null) {</span>
+<span class="cstat-no" title="statement not covered" >                service.userGet(service.rootScope.user.uid)</span>
+                    .then(<span class="fstat-no" title="function not covered" >function (user) {</span>
+<span class="cstat-no" title="statement not covered" >                        service.rootScope.user = user;</span>
+<span class="cstat-no" title="statement not covered" >                        angular.forEach(listeners, <span class="fstat-no" title="function not covered" >function (fn) {</span></span>
+<span class="cstat-no" title="statement not covered" >                            fn(service.rootScope.user);</span>
+                        });
+                    })
+                    .catch(<span class="fstat-no" title="function not covered" >function (error) {</span>
+                        //console.log(error);
+                    });
+            }
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function login(creds, opts) {</span>
+<span class="cstat-no" title="statement not covered" >            return auth.$authWithPassword(creds, opts);</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function logout() {</span>
+<span class="cstat-no" title="statement not covered" >            auth.$unauth();</span>
+<span class="cstat-no" title="statement not covered" >            service.rootScope.user = null;</span>
+<span class="cstat-no" title="statement not covered" >            $location.path('/');</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function userGet(id) {</span>
+<span class="cstat-no" title="statement not covered" >            return $http.get('/api/user/' + id)</span>
+                .then(success)
+                .catch(fail);
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function success(response) {</span>
+<span class="cstat-no" title="statement not covered" >                return response.data;</span>
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function fail(error) {</span>
+<span class="cstat-no" title="statement not covered" >                var msg = 'query for user failed. ' + error.data.description;</span>
+<span class="cstat-no" title="statement not covered" >                logger.error(msg);</span>
+<span class="cstat-no" title="statement not covered" >                return $q.reject(msg);</span>
+            }
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function userCreate(user) {</span>
+            //service.rootScope.user = user;
+<span class="cstat-no" title="statement not covered" >            var ref = new Firebase(FBURL);</span>
+<span class="cstat-no" title="statement not covered" >            var authObj = $firebaseAuth(ref);</span>
+<span class="cstat-no" title="statement not covered" >            var deferred = $q.defer();</span>
+<span class="cstat-no" title="statement not covered" >            authObj.$createUser(user)</span>
+                .then(<span class="fstat-no" title="function not covered" >function (userData) {</span>
+<span class="cstat-no" title="statement not covered" >                    var credentials = {</span>
+                        email: user.email,
+                        password: user.password
+                    };
+<span class="cstat-no" title="statement not covered" >                    var opts = {</span>
+                        rememberMe: false //vm.rememberMe
+                    };
+<span class="cstat-no" title="statement not covered" >                    user.id = userData.uid;</span>
+<span class="cstat-no" title="statement not covered" >                    return service.userSet(user)</span>
+                        .then(<span class="fstat-no" title="function not covered" >function (data) {</span>
+<span class="cstat-no" title="statement not covered" >                            service.login(credentials, opts);</span>
+<span class="cstat-no" title="statement not covered" >                            deferred.resolve(data);</span>
+<span class="cstat-no" title="statement not covered" >                            $location.path('/');</span>
+                        })
+                        .catch(<span class="fstat-no" title="function not covered" >function (error) {</span>
+<span class="cstat-no" title="statement not covered" >                            deferred.reject(error);</span>
+                        });
+                })
+                .catch(<span class="fstat-no" title="function not covered" >function (error) {</span>
+<span class="cstat-no" title="statement not covered" >                    deferred.reject(error);</span>
+                });
+<span class="cstat-no" title="statement not covered" >            return deferred.promise;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function userSet(user) {</span>
+<span class="cstat-no" title="statement not covered" >            var deferred = $q.defer();</span>
+<span class="cstat-no" title="statement not covered" >            $http.post('/api/user', user)</span>
+                .then(success)
+                .catch(fail);
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function success(response) {</span>
+<span class="cstat-no" title="statement not covered" >                deferred.resolve(response.data);</span>
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function fail(error) {</span>
+<span class="cstat-no" title="statement not covered" >                var msg = 'query to update user failed ' + error.data.description;</span>
+<span class="cstat-no" title="statement not covered" >                logger.error(msg);</span>
+<span class="cstat-no" title="statement not covered" >                deferred.reject(msg);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return deferred.promise;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function userDelete() {</span>
+&nbsp;
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function userList() {</span>
+<span class="cstat-no" title="statement not covered" >            return $http.get('/api/users/list')</span>
+                .then(success)
+                .catch(fail);
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function success(response) {</span>
+<span class="cstat-no" title="statement not covered" >                return response.data;</span>
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function fail(error) {</span>
+<span class="cstat-no" title="statement not covered" >                var msg = 'query for users failed. ' + error.data.description;</span>
+<span class="cstat-no" title="statement not covered" >                logger.error(msg);</span>
+<span class="cstat-no" title="statement not covered" >                return $q.reject(msg);</span>
+            }
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function watch(cb, $scope) {</span>
+<span class="cstat-no" title="statement not covered" >            listeners.push(cb);</span>
+<span class="cstat-no" title="statement not covered" >            auth.$waitForAuth(cb);</span>
+<span class="cstat-no" title="statement not covered" >            var unbind = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                var i = listeners.indexOf(cb);</span>
+<span class="cstat-no" title="statement not covered" >                if (i &gt; -1) {</span>
+<span class="cstat-no" title="statement not covered" >                    listeners.splice(i, 1);</span>
+                }
+            };
+<span class="cstat-no" title="statement not covered" >            if ($scope) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.$on('$destroy', unbind);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return unbind;</span>
+        }
+    }
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon May 04 2015 12:47:06 GMT-0700 (PDT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

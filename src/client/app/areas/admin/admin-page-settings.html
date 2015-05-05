@@ -1,0 +1,89 @@
+<div ng-controller="AdminPageSettingsController as vm">
+    <div ng-hide="vm.initialized">
+        <h3 class="text-center">{{pageStrings.Loading}}</h3>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped active progress-bar-full" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                <span class="sr-only">{{pageStrings.Loading}}</span>
+            </div>
+        </div>
+    </div>
+    <div ng-show="vm.initialized">
+       <p>Used by Admins to edit any text on any page</p>
+        <div ng-repeat="(key, page) in vm.pageSettings | orderBy: 'name'" ng-cloak>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" data-target="#page-settings-collapse{{$index}}" aria-expanded="true" aria-controls="page-settings-collapse{{$index}}">
+                        {{page.title}}
+                    </a>
+                </h4>
+                    </div>
+                    <div id="page-settings-collapse{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <table class="table table-condensed table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>{{pageStrings.Name}}</th>
+                                        <th>{{pageStrings.Value}}</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in page.Items | toArray | orderBy: 'title'">
+                                        <td>
+                                            <input class="form-control input-sm" ng-model="item.name" disabled="disabled" />
+                                        </td>
+                                        <td>
+                                            <input class="form-control input-sm" ng-model="item.value" />
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-success btn-sm" ng-click="vm.saveString(key, item.$key, item)" title="Save"><span class="glyphicon glyphicon-ok"></span>
+                                            </button>
+
+                                            <button class="btn btn-danger btn-sm" ng-click="vm.deleteString(key, item.$key)"><span class="glyphicon glyphicon-remove"></span>
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading" id="panelHeadingAddPageSettings">
+                <h4 class="panel-title">
+                   <a data-toggle="collapse" data-parent="#panelHeadingAddPageSettings" data-target="#panelBodyAddPageContent" aria-expanded="true" aria-controls="panelBodyAddPageContent">
+                        {{pageStrings.AddPageContent}} <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </h4>
+            </div>
+            <div id="panelBodyAddPageContent" role="tabpanel" class="panel-collapse collapse" aria-labelledby="panelBodyAddPageContent">
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label>{{pageStrings.Name}}</label>
+                            <input class="form-control" ng-model="vm.pageString.name" />
+                        </div>
+                        <div class="form-group">
+                            <label>{{pageStrings.Value}}</label>
+                            <textarea class="form-control" ng-model="vm.pageString.value"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>{{pageStrings.Page}}</label>
+                            <select class="form-control" ng-options="key as val.title for (key, val) in vm.pageSettings" ng-model="vm.pageString.category">
+                                <option value="">{{pageStrings.SelectPage}}</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-success pull-right" ng-click="vm.addString()" ng-disabled="!vm.pageString.name || !vm.pageString.value || !vm.pageString.category">
+                            {{pageStrings.Add}} <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

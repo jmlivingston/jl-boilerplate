@@ -1,0 +1,136 @@
+<!--TODO: Clearly not optimized for performance-->
+<div class="container" ng-controller="AdminIssuesController as vm">
+    <div role="tabpanel" ng-init="vm.statuses = ['Submitted', 'Assigned', 'In Progress', 'Complete']">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a data-target="#tab-my-issues" aria-controls="tab-my-issues" role="tab" data-toggle="tab">{{pageStrings.MyIssues}} ({{(vm.issues | filter: vm.assignedFilter).length}})</a>
+            </li>
+            <li role="presentation" ng-repeat="status in vm.statuses"
+               ng-hide="(status === 'Submitted' && vm.rootScope.user.roles.editor) || (status === 'Complete' && vm.rootScope.user.roles.editor)">
+                <a data-target="#tab-{{$index}}" aria-controls="#tab-{{$index}}" role="tab" data-toggle="tab">{{status}} ({{(vm.issues | filter: { Status: status }).length}})</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="tab-my-issues">
+                <br />
+                <div ng-show="(vm.issues | filter: vm.assignedFilter).length === 0">
+                    <p>{{pageStrings.NoRecords1}} <strong>{{pageStrings.MyIssues}}</strong> {{pageStrings.NoRecords2}}</p>
+                </div>
+                <table class="table table-striped table-responsive" ng-hide="(vm.issues | filter: vm.assignedFilter).length === 0">
+                    <thead>
+                        <tr>
+                            <th>
+                                <a ng-click="vm.updateSort('Status')">
+                                    {{pageStrings.Status}}
+                                </a>
+                            </th>
+                            <th>
+                                <a ng-click="vm.updateSort('Created')">{{pageStrings.Created}}</a>
+                            </th>
+                            <th>
+                                <a ng-click="vm.updateSort('FirstName')">{{pageStrings.CreatedBy}}</a>
+                            </th>
+                            <th>
+                                <a ng-click="vm.updateSort('Email')">{{pageStrings.Email}}</a>
+                            </th>
+                            <th>
+                                {{pageStrings.Edit}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="(key, issue) in vm.issues | filter: vm.assignedFilter | orderBy: vm.sort.column:vm.sort.descending">
+                            <td>{{issue.Status}}</td>
+                            <td>{{issue.Created|date:'short'}}</td>
+                            <td>{{issue.FirstName}} {{issue.LastName}}</td>
+                            <td>{{issue.Email}}</td>
+                            <td>
+                                <button class="btn btn-success" ng-click="vm.getDetails(issue)" data-target="#issue-modal" data-toggle="modal">
+                                    {{pageStrings.Edit}}
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tab-{{$index}}" ng-repeat="status in vm.statuses">
+                <br />
+                <div ng-show="(vm.issues | filter: { Status: status }).length === 0">
+                    <p>{{pageStrings.NoRecords1}} <strong>{{status}}</strong> {{pageStrings.NoRecords2}}</p>
+                </div>
+                <table class="table table-striped table-responsive" ng-hide="(vm.issues | filter: { Status: status }).length === 0">
+                    <thead>
+                        <tr>
+                            <th>
+                                <a ng-click="vm.updateSort('Created')">{{pageStrings.Created}}</a>
+                            </th>
+                            <th>
+                                <a ng-click="vm.updateSort('AssignedToName')">{{pageStrings.AssignedTo}}</a>
+                            </th>
+                            <th>
+                                <a ng-click="vm.updateSort('FirstName')">{{pageStrings.CreatedBy}}</a>
+                            </th>
+                            <th>
+                                <a ng-click="vm.updateSort('Email')">{{pageStrings.Email}}</a>
+                            </th>
+                            <th>
+                                {{pageStrings.Edit}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="(key, issue) in vm.issues | filter: { Status: status } | orderBy: vm.sort.column:vm.sort.descending">
+                            <td>{{issue.Created|date:'short'}}</td>
+                            <td>{{issue.AssignedToName}}</td>
+                            <td>{{issue.FirstName}} {{issue.LastName}}</td>
+                            <td>{{issue.Email}}</td>
+                            <td>
+                                <button class="btn btn-success" ng-click="vm.getDetails(issue)" data-target="#issue-modal" data-toggle="modal">
+                                    {{pageStrings.Edit}}
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="issue-modal" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">{{vm.Issue.FirstName}} {{vm.Issue.LastName}} ({{vm.Issue.Status}})</h4>
+                </div>
+                <div class="modal-body">
+                    <ng-include src="'app/areas/issues/content.html'"></ng-include>
+                    <div class="form-group">
+                        <label>{{pageStrings.Status}}
+                        </label>
+                        <select class="form-control" ng-options="s as s for s in vm.Statuses" ng-model="vm.Issue.Status">
+                            <option value="">{{pageStrings.SelectStatus}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>{{pageStrings.AssignedTo}}
+                        </label>
+                        <select class="form-control" ng-options="val.email as val.name for val in vm.Users" ng-model="vm.Issue.AssignedTo"
+                           ng-change="vm.assignUser(vm.Issue, val)">
+                            <option value="">{{pageStrings.SelectUser}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>{{pageStrings.Notes}}
+                        </label>
+                        <textarea type="text" class="form-control" placeholder="{{pageStrings.Notes}}" ng-model="vm.Issue.Notes"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.save()">{{pageStrings.Save}}</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">{{pageStrings.Close}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

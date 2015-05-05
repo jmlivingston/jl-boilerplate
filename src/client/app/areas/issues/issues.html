@@ -1,0 +1,17 @@
+<section class="container" ng-show="pageStrings">
+    <section ng-show="vm.status === 'new'">
+        <ng-include src="'app/areas/issues/header.html'"></ng-include>
+        <ng-include src="'app/areas/issues/content.html'"></ng-include>
+    </section>
+    <section ng-show="vm.status === 'submitted'">
+        <div class="text-center">
+            <h1>{{pageStrings.SubmittedCongratulations}}</h1>
+            <h3>
+                {{pageStrings.SubmittedDescription}}
+            </h3>
+            <button class="btn btn-lg btn-primary" ng-click="vm.createNew()">
+                {{pageStrings.CreateNew}}
+            </button>
+        </div>
+    </section>
+</section>

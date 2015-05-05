@@ -1,0 +1,38 @@
+<div>
+    <form>
+        <p class="text-danger" ng-hide="vm.Issue.Status">{{pageStrings.Required}}</p>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="firstName">{{pageStrings.FirstName}}<span class="text-danger">&nbsp;*</span>
+                    </label>
+                    <input type="text" class="form-control" placeholder="{{pageStrings.FirstNamePrompt}}" ng-model="vm.Issue.FirstName" ng-disabled="vm.Issue.Status">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="lastName">{{pageStrings.LastName}}<span class="text-danger">&nbsp;*</span>
+                    </label>
+                    <input type="text" class="form-control" placeholder="{{pageStrings.LastNamePrompt}}" ng-model="vm.Issue.LastName" ng-disabled="vm.Issue.Status">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">{{pageStrings.Email}}<span class="text-danger">&nbsp;*</span>
+            </label>
+            <input type="text" class="form-control" placeholder="{{pageStrings.EmailPrompt}}" ng-model="vm.Issue.Email" ng-disabled="vm.Issue.Status">
+        </div>
+        <div class="form-group">
+            <label for="description">{{pageStrings.Description}}<span class="text-danger">&nbsp;*</span>
+            </label>
+            <textarea type="text" class="form-control" placeholder="{{pageStrings.DescriptionPrompt}}" ng-model="vm.Issue.Description" ng-disabled="vm.Issue.Status"></textarea>
+        </div>
+        <button class="btn btn-success" ng-click="vm.send()" ng-hide="vm.Issue.Status" ng-disabled="vm.Issue.FirstName === '' || vm.Issue.LastName === '' || vm.Issue.Email === ''
+          || vm.Issue.Description === ''">
+            {{pageStrings.Submit}}</button>
+        <button class="btn btn-danger" ng-click="vm.activate()" ng-hide="vm.Issue.Status">{{pageStrings.Clear}}</button>
+        <div ng-show="vm.Issue.FirstName === '' || vm.Issue.LastName === '' || vm.Issue.Email === '' || vm.Issue.Description === ''">
+            <p class="text-danger">{{pageStrings.Required}}</p>
+        </div>
+    </form>
+</div>

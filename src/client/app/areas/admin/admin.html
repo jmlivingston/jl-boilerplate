@@ -1,0 +1,42 @@
+<div class="container" ng-show="pageStrings">
+    <div class="page-header">
+        <h2>{{pageStrings.Title}}</h2>
+    </div>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="content-settings">
+            <div role="tabpanel">
+                <ul class="nav nav-tabs" role="tablist"  ng-hide="vm.rootScope.user.roles.editor">
+                    <li role="presentation" class="cursor-pointer" ng-class="{active: vm.activeAdminTab == 0}">
+                        <a data-target="#issues" aria-controls="issues" role="tab" data-toggle="tab" ng-click="vm.setTab('activeAdminTab', 0)">
+                            {{pageStrings.Issues}} ({{vm.issuesCount}})
+                        </a>
+                    </li>
+                    <li role="presentation" class="cursor-pointer" ng-class="{active: vm.activeAdminTab == 1}">
+                        <a data-target="#page-settings" aria-controls="page-settings" role="tab" data-toggle="tab" ng-click="vm.setTab('activeAdminTab', 1)">
+                            {{pageStrings.PageSettings}}
+                        </a>
+                    </li>
+                    <li role="presentation" class="cursor-pointer" ng-class="{active: vm.activeAdminTab == 2}">
+                        <a data-target="#settings" aria-controls="settings" role="tab" data-toggle="tab" ng-click="vm.setTab('activeAdminTab', 2)">
+                            {{pageStrings.Settings}}
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane" id="issues" ng-class="{active: vm.activeAdminTab == 0, 'fade in': vm.activeAdminTab != 0}">
+                        <br />
+                        <ng-include src="'app/areas/admin/admin-issues.html'"></ng-include>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="page-settings" ng-class="{active: vm.activeAdminTab == 1, 'fade in': vm.activeAdminTab != 0}">
+                        <br />
+                        <ng-include src="'app/areas/admin/admin-page-settings.html'"></ng-include>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="settings" ng-class="{active: vm.activeAdminTab == 2, 'fade in': vm.activeAdminTab != 0}">
+                        <br />
+                        <ng-include src="'app/areas/admin/admin-settings.html'"></ng-include>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
