@@ -6,3 +6,5 @@ launch.json
 heroku
 .idea
 build
+report
+test
