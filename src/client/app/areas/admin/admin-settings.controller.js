@@ -7,7 +7,7 @@
     /* @ngInject */
     function AdminSettingsController(dataservice, $http, logger) {
         var vm = this;
-        vm.limits = [25, 50, 75, 100]
+        vm.limits = [25, 50, 75, 100];
         vm.limit = 25;
         vm.createDummyData = createDummyData;
 

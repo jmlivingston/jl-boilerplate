@@ -1,0 +1,45 @@
+<div ng-controller="AdminSeoController as vm">
+    <div ng-hide="vm.initialized">
+        <h3 class="text-center">{{pageStrings.Loading}}</h3>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped active progress-bar-full" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                <span class="sr-only">{{pageStrings.Loading}}</span>
+            </div>
+        </div>
+    </div>
+    <div ng-show="vm.initialized">
+        <div class="row">
+            <div class="col-xs-3">
+                <label>{{pageStrings.Image}}</label>
+                <img ng-src="{{vm.seoItem.imageDataUri}}" class="img-thumbnail img-fullwidth" ng-show="vm.seoItem.imageDataUriFileName" /> {{vm.seoItem.imageDataUriFileName || 'N/A'}}
+                <br />
+                <span class="btn btn-default btn-file">
+                {{pageStrings.Browse}}<input id="update-seo-image" type="file" />
+            </span>
+                <br />
+                <br />
+                <button class="btn btn-primary" ng-click="vm.updateSeoImage()">{{pageStrings.UpdateImage}}</button>
+            </div>
+            <div class="col-xs-9">
+                <div class="form-group">
+                    <label class="control-label">{{pageStrings.Title}}</label>
+                    <input type="text" class="form-control" ng-model="vm.seoItem.title" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">{{pageStrings.Description}}</label>
+                    <input type="text" class="form-control" ng-model="vm.seoItem.description" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">{{pageStrings.Keywords}}</label>
+                    <input type="text" class="form-control" ng-model="vm.seoItem.keywords" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="pull-right">
+            <button class="btn btn-success" ng-click="vm.save()">
+                {{pageStrings.Save}} <span class="glyphicon glyphicon-ok"></span>
+            </button>
+        </div>
+    </div>
+</div>

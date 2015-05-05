@@ -21,6 +21,11 @@
                             {{pageStrings.Settings}}
                         </a>
                     </li>
+                    <li role="presentation" class="cursor-pointer" ng-class="{active: vm.activeAdminTab == 3}">
+                        <a data-target="#seo" aria-controls="seo" role="tab" data-toggle="tab" ng-click="vm.setTab('activeAdminTab', 3)">
+                            {{pageStrings.SEO}}
+                        </a>
+                    </li>
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane" id="issues" ng-class="{active: vm.activeAdminTab == 0, 'fade in': vm.activeAdminTab != 0}">
@@ -34,6 +39,10 @@
                     <div role="tabpanel" class="tab-pane" id="settings" ng-class="{active: vm.activeAdminTab == 2, 'fade in': vm.activeAdminTab != 0}">
                         <br />
                         <ng-include src="'app/areas/admin/admin-settings.html'"></ng-include>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="seo" ng-class="{active: vm.activeAdminTab == 3, 'fade in': vm.activeAdminTab != 0}">
+                        <br />
+                        <ng-include src="'app/areas/admin/admin-seo.html'"></ng-include>
                     </div>
                 </div>
             </div>
