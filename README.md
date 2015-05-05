@@ -1,6 +1,6 @@
-# sdcera-public-records
+# jl-boilerplate
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+//[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 **Generated from HotTowel Angular**
 
