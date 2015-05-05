@@ -231,6 +231,8 @@ gulp.task('heroku', [], function () {
                 base: 'build'
             })
                 .pipe(gulp.dest(dest + '/client'));
+            gulp.src(['./bower_components/bootstrap/fonts/**'], {})
+                .pipe(gulp.dest(dest + 'client/fonts'));
         }
         else {
             gulp.src('./.tmp/**')
@@ -246,19 +248,6 @@ gulp.task('heroku', [], function () {
             base: 'src/server'
         })
             .pipe(gulp.dest(dest + '/server'));
-
-        //gulp.src(['./client/fonts/**'], {
-        //    base: 'src/server'
-        //});
-        //.pipe(gulp.dest(dest + '/client/styles/bootstrap/fonts'));
-
-        //gulp.src(['./bower_components/bootstrap-css-only/fonts/**'], {
-        //    //base: 'src/server'
-        //})
-        //    .pipe(gulp.dest(dest + '/client/styles/bootstrap/fonts'));
-
-        //gulp.src('./src/client/js/bootstrap.min.js')
-        //    .pipe(gulp.dest(dest + 'client/js'));
     });
 });
 
