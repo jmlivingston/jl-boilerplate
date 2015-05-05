@@ -217,7 +217,7 @@ gulp.task('build', ['optimizeCss', 'optimizeJs', 'images', 'fonts'], function ()
 
 gulp.task('heroku', [], function () {
     var dest = config.heroku + args.repo + '/';
-    var delconfig = [].concat(dest + 'server', dest + 'client');
+    var delconfig = [].concat(dest + '**/*', dest + '.tmp/**', '!' + dest + '.gitignore', '!' + dest + '.git/**');
     log('Cleaning: ' + $.util.colors.blue(delconfig));
     del(delconfig, function () {
         gulp.src([config.srcHeroku + 'Procfile', config.srcHeroku + '.gitignore'], {})
@@ -258,7 +258,7 @@ gulp.task('heroku-clean', [], function () {
         destProd + '**/*', destProd + '.tmp/**', '!' + destProd + '.gitignore', '!' + destProd + '.git/**');
     log('Cleaning: ' + $.util.colors.blue(delconfig));
     del(delconfig, function () {
-        console.log()
+        console.log();
     });
 });
 
