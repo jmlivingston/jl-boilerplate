@@ -36,7 +36,7 @@ gulp.task('default', ['help']);
  * vet the code and create coverage report
  * @return {Stream}
  */
-gulp.task('vet', function() {
+gulp.task('vet', function () {
     log('Analyzing source with JSHint and JSCS');
 
     return gulp
@@ -53,7 +53,7 @@ gulp.task('vet', function() {
 /**
  * Create a visualizer report
  */
-gulp.task('plato', function(done) {
+gulp.task('plato', function (done) {
     log('Analyzing source with Plato');
     log('Browse to /report/plato/index.html to see Plato results');
 
@@ -64,7 +64,7 @@ gulp.task('plato', function(done) {
  * Compile less to css
  * @return {Stream}
  */
-gulp.task('styles', ['clean-styles'], function() {
+gulp.task('styles', ['clean-styles'], function () {
     log('Compiling Less --> CSS');
 
     return gulp
@@ -82,7 +82,7 @@ gulp.task('styles', ['clean-styles'], function() {
  * Copy fonts
  * @return {Stream}
  */
-gulp.task('fonts', ['clean-fonts'], function() {
+gulp.task('fonts', ['clean-fonts'], function () {
     log('Copying fonts');
 
     return gulp
@@ -94,7 +94,7 @@ gulp.task('fonts', ['clean-fonts'], function() {
  * Compress images
  * @return {Stream}
  */
-gulp.task('images', ['clean-images'], function() {
+gulp.task('images', ['clean-images'], function () {
     log('Compressing and copying images');
 
     return gulp
@@ -105,7 +105,7 @@ gulp.task('images', ['clean-images'], function() {
         .pipe(gulp.dest(config.build + 'images'));
 });
 
-gulp.task('less-watcher', function() {
+gulp.task('less-watcher', function () {
     gulp.watch([config.less], ['styles']);
 });
 
@@ -113,7 +113,7 @@ gulp.task('less-watcher', function() {
  * Create $templateCache from the html templates
  * @return {Stream}
  */
-gulp.task('templatecache', ['clean-code'], function() {
+gulp.task('templatecache', ['clean-code'], function () {
     log('Creating an AngularJS $templateCache');
 
     return gulp
@@ -134,7 +134,7 @@ gulp.task('templatecache', ['clean-code'], function() {
  * Wire-up the bower dependencies
  * @return {Stream}
  */
-gulp.task('wiredep', function() {
+gulp.task('wiredep', function () {
     log('Wiring the bower dependencies into the html');
 
     var wiredep = require('wiredep').stream;
@@ -150,7 +150,7 @@ gulp.task('wiredep', function() {
         .pipe(gulp.dest(config.client));
 });
 
-gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function() {
+gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function () {
     log('Wire up css into the html, after files are ready');
 
     return gulp
@@ -163,7 +163,7 @@ gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function() {
  * Run the spec runner
  * @return {Stream}
  */
-gulp.task('serve-specs', ['build-specs'], function(done) {
+gulp.task('serve-specs', ['build-specs'], function (done) {
     log('run the spec runner');
     //isDev, specRunner
     serve(true, true);
@@ -174,7 +174,7 @@ gulp.task('serve-specs', ['build-specs'], function(done) {
  * Inject all the spec files into the specs.html
  * @return {Stream}
  */
-gulp.task('build-specs', ['templatecache'], function(done) {
+gulp.task('build-specs', ['templatecache'], function (done) {
     log('building the spec runner');
 
     var wiredep = require('wiredep').stream;
@@ -203,7 +203,7 @@ gulp.task('build-specs', ['templatecache'], function(done) {
  * This is separate so we can run tests on
  * optimize before handling image or fonts
  */
-gulp.task('build', ['optimizeJs', 'optimizeCss', 'images', 'fonts'], function() {
+gulp.task('build', ['optimizeCss', 'optimizeJs', 'images', 'fonts'], function () {
     log('Building everything');
     var msg = {
         title: 'gulp build',
@@ -215,13 +215,12 @@ gulp.task('build', ['optimizeJs', 'optimizeCss', 'images', 'fonts'], function() 
     notify(msg);
 });
 
-gulp.task('heroku', [], function() {
+gulp.task('heroku', [], function () {
     var dest = config.heroku + args.repo + '/';
     var delconfig = [].concat(dest + 'server', dest + 'client');
     log('Cleaning: ' + $.util.colors.blue(delconfig));
-    del(delconfig, function() {
-        gulp.src([config.srcHeroku + '/**'], {
-        })
+    del(delconfig, function () {
+        gulp.src([config.srcHeroku + '/**'], {})
             .pipe(gulp.dest(dest));
 
         gulp.src([config.build + '/**'], {
@@ -234,18 +233,18 @@ gulp.task('heroku', [], function() {
         })
             .pipe(gulp.dest(dest + '/server'));
 
-        gulp.src(['./client/fonts/**'], {
-            base: 'src/server'
-        })
-            .pipe(gulp.dest(dest + '/client/styles/bootstrap/fonts'));
+        //gulp.src(['./client/fonts/**'], {
+        //    base: 'src/server'
+        //});
+        //.pipe(gulp.dest(dest + '/client/styles/bootstrap/fonts'));
 
-        gulp.src(['./bower_components/bootstrap-css-only/fonts/**'], {
-            //base: 'src/server'
-        })
-            .pipe(gulp.dest(dest + '/client/styles/bootstrap/fonts'));
+        //gulp.src(['./bower_components/bootstrap-css-only/fonts/**'], {
+        //    //base: 'src/server'
+        //})
+        //    .pipe(gulp.dest(dest + '/client/styles/bootstrap/fonts'));
 
-        gulp.src('./src/client/js/bootstrap.min.js')
-            .pipe(gulp.dest(dest + 'client/js'));
+        //gulp.src('./src/client/js/bootstrap.min.js')
+        //    .pipe(gulp.dest(dest + 'client/js'));
     });
 });
 
@@ -254,7 +253,7 @@ gulp.task('heroku', [], function() {
  * and inject them into the new index.html
  * @return {Stream}
  */
-gulp.task('optimizeJs', ['inject', 'test'], function() {
+gulp.task('optimizeJs', ['inject', 'test'], function () {
     log('Optimizing the JS and body HTML');
 
     var assets = $.useref.assets({
@@ -296,7 +295,7 @@ gulp.task('optimizeJs', ['inject', 'test'], function() {
  * and inject them into the new index.html
  * @return {Stream}
  */
-gulp.task('optimizeCss', ['inject', 'test'], function() {
+gulp.task('optimizeCss', ['inject', 'test'], function () {
     log('Optimizing the CSS');
 
     var assets = $.useref.assets({
@@ -330,7 +329,7 @@ gulp.task('optimizeCss', ['inject', 'test'], function() {
  * Remove all files from the build, temp, and reports folders
  * @param  {Function} done - callback when complete
  */
-gulp.task('clean', function(done) {
+gulp.task('clean', function (done) {
     var delconfig = [].concat(config.build, config.temp, config.report);
     log('Cleaning: ' + $.util.colors.blue(delconfig));
     del(delconfig, done);
@@ -340,7 +339,7 @@ gulp.task('clean', function(done) {
  * Remove all fonts from the build folder
  * @param  {Function} done - callback when complete
  */
-gulp.task('clean-fonts', function(done) {
+gulp.task('clean-fonts', function (done) {
     clean(config.build + 'fonts/**/*.*', done);
 });
 
@@ -348,7 +347,7 @@ gulp.task('clean-fonts', function(done) {
  * Remove all images from the build folder
  * @param  {Function} done - callback when complete
  */
-gulp.task('clean-images', function(done) {
+gulp.task('clean-images', function (done) {
     clean(config.build + 'images/**/*.*', done);
 });
 
@@ -356,7 +355,7 @@ gulp.task('clean-images', function(done) {
  * Remove all styles from the build and temp folders
  * @param  {Function} done - callback when complete
  */
-gulp.task('clean-styles', function(done) {
+gulp.task('clean-styles', function (done) {
     var files = [].concat(
         config.temp + '**/*.css',
         config.build + 'styles/**/*.css'
@@ -368,7 +367,7 @@ gulp.task('clean-styles', function(done) {
  * Remove all js and html from the build and temp folders
  * @param  {Function} done - callback when complete
  */
-gulp.task('clean-code', function(done) {
+gulp.task('clean-code', function (done) {
     var files = [].concat(
         config.temp + '**/*.js',
         config.build + 'js/**/*.js',
@@ -383,10 +382,10 @@ gulp.task('clean-code', function(done) {
  *    gulp test --startServers
  * @return {Stream}
  */
-gulp.task('test', ['vet', 'templatecache'], function(done) {
+gulp.task('test', ['vet', 'templatecache'], function (done) {
     //TODO: Temporarily disabling testing as this breaks on paypal in constants.js file
     //done();
-    startTests(true /*singleRun*/ , done);
+    startTests(true /*singleRun*/, done);
 });
 
 /**
@@ -395,7 +394,7 @@ gulp.task('test', ['vet', 'templatecache'], function(done) {
  * To start servers and run midway specs as well:
  *    gulp autotest --startServers
  */
-gulp.task('autotest', function(done) {
+gulp.task('autotest', function (done) {
     /*singleRun*/
     startTests(false, done);
 });
@@ -405,7 +404,7 @@ gulp.task('autotest', function(done) {
  * --debug-brk or --debug
  * --nosync
  */
-gulp.task('serve-dev', ['inject'], function() {
+gulp.task('serve-dev', ['inject'], function () {
     /*isDev*/
     serve(true);
 });
@@ -415,7 +414,7 @@ gulp.task('serve-dev', ['inject'], function() {
  * --debug-brk or --debug
  * --nosync
  */
-gulp.task('serve-build', ['build'], function() {
+gulp.task('serve-build', ['build'], function () {
     /*isDev*/
     serve(false);
 });
@@ -428,7 +427,7 @@ gulp.task('serve-build', ['build'], function() {
  * --type=major will bump the major version x.*.*
  * --version=1.2.3 will bump to a specific version and ignore other flags
  */
-gulp.task('bump', function() {
+gulp.task('bump', function () {
     var msg = 'Bumping versions';
     var type = args.type;
     var version = args.ver;
@@ -522,24 +521,24 @@ function serve(isDev, specRunner) {
     }
 
     return $.nodemon(nodeOptions)
-        .on('restart', ['vet'], function(ev) {
+        .on('restart', ['vet'], function (ev) {
             log('*** nodemon restarted');
             log('files changed:\n' + ev);
-            setTimeout(function() {
+            setTimeout(function () {
                 browserSync.notify('reloading now ...');
                 browserSync.reload({
                     stream: false
                 });
             }, config.browserReloadDelay);
         })
-        .on('start', function() {
+        .on('start', function () {
             log('*** nodemon started');
             startBrowserSync(isDev, specRunner);
         })
-        .on('crash', function() {
+        .on('crash', function () {
             log('*** nodemon crashed: script crashed for some reason');
         })
-        .on('exit', function() {
+        .on('exit', function () {
             log('*** nodemon exited cleanly');
         });
 }
