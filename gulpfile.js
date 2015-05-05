@@ -251,6 +251,17 @@ gulp.task('heroku', [], function () {
     });
 });
 
+gulp.task('heroku-clean', [], function () {
+    var destQa = './heroku/qa/';
+    var destProd = './heroku/prod/';
+    var delconfig = [].concat(destQa + '**/*', destQa + '.tmp/**', '!' + destQa + '.gitignore', '!' + destQa + '.git/**',
+        destProd + '**/*', destProd + '.tmp/**', '!' + destProd + '.gitignore', '!' + destProd + '.git/**');
+    log('Cleaning: ' + $.util.colors.blue(delconfig));
+    del(delconfig, function () {
+        console.log()
+    });
+});
+
 /**
  * Optimize all files, move to a build folder,
  * and inject them into the new index.html
