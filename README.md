@@ -62,17 +62,25 @@
 ### Heroku Integration
  - Run `gulp deploy-build` to create qa and prod folders in the deploy folder. If you have already run 'gulp build', you can use the --min option.
  - Once the prod and qa folders are created and you have created an app within Heroku, you will want to cd into those folders and initialize git using Heroku's deploy instructions. It should look something like this.
+
 `heroku login`
 `git init`
 `heroku git:remote -a my-app-qa`
+
 Note: (Replace with your app name. I use qa and prod suffixes to differentiate what type of environment it is.)
  - Once you have done this, you can return to the root directory and deploy to Heroku using the following commands:
+
 `gulp deploy-push-heroku --repo qa|prod --min -m "My commit message"`
+
 (If you have made changes and not run 'gulp build', you must omit the --min option. --repo is required. --m is optional)
     - For example:
+
         `gulp deploy-push-heroku --repo qa`
-(Assumes you need to build, are pushing to QA, and will use the default commit message.).
+
+(Assumes you need to build, are pushing to QA, and will use the default commit message.)
+
         `gulp deploy-push-heroku --repo prod --min --m "New updates"`
+
 (Assumes you don't need to build, are pushing to PROD, and will have a custom commit message.)
 
 ## Exploring jl-boilerplate
