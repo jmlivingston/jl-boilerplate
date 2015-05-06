@@ -225,6 +225,7 @@ gulp.task('deploy-build', args.min ? null : ['build', 'styles', 'templatecache']
     }
     dests.forEach(function (dest) {
         var destDir = config.deploy + dest + '/';
+        log('DestDir: ' + destDir);
         var delconfig = [].concat(destDir + '**/*', destDir + '.tmp/**', '!' + destDir + '.gitignore', '!' + destDir + '.git/**');
         log('Cleaning: ' + $.util.colors.blue(delconfig));
         del(delconfig, function () {
