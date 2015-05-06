@@ -28,8 +28,8 @@ module.exports = function() {
             '!' + client + '/js/bootstrap.min.js'
         ],
         build: './build/',
-        heroku: './heroku/',
-        srcHeroku: './src-heroku/',
+        deploy: './deploy/',
+        srcDeploy: './src-deploy/',
         serverDir: './src/server/',
         client: client,
         css: temp + 'styles.css',

@@ -210,56 +210,96 @@ gulp.task('build', ['optimizeCss', 'optimizeJs', 'images', 'fonts'], function ()
         subtitle: 'Deployed to the build folder',
         message: 'Running `gulp serve-build`'
     };
-    del(config.temp);
+    //del(config.temp);
     log(msg);
     notify(msg);
 });
 
-gulp.task('heroku', [], function () {
-    var dest = config.heroku + args.repo + '/';
-    var delconfig = [].concat(dest + '**/*', dest + '.tmp/**', '!' + dest + '.gitignore', '!' + dest + '.git/**');
-    log('Cleaning: ' + $.util.colors.blue(delconfig));
-    del(delconfig, function () {
-        gulp.src([config.srcHeroku + 'Procfile', config.srcHeroku + '.gitignore'], {})
-            .pipe(gulp.dest(dest));
+gulp.task('deploy-build', args.min ? null : ['build', 'styles', 'templatecache'], function (done) {
+    var dest = config.deploy + args.repo + '/';
+    var dests = [];
+    if (args.repo) {
+        dests = [args.repo];
+    } else {
+        dests = ['qa', 'prod'];
+    }
+    var i = 0;
+    dests.forEach(function (dest) {
+        i++;
+        var destDir = config.deploy + dest + '/';
+        var delconfig = [].concat(destDir + '**/*', destDir + '.tmp/**', '!' + destDir + '.gitignore', '!' + destDir + '.git/**');
+        log('Cleaning: ' + $.util.colors.blue(delconfig));
+        del(delconfig, function () {
+            gulp.src([config.srcDeploy + 'Procfile', config.srcDeploy + '.gitignore'], {})
+                .pipe(gulp.dest(destDir));
+            gulp.src([config.srcDeploy + dest + '/**/*'], {})
+                .pipe(gulp.dest(destDir));
+            if (dest === 'prod') {
+                gulp.src([config.build + '/**'], {
+                        base: 'build'
+                    })
+                    .pipe(gulp.dest(destDir + '/client'));
+                gulp.src(['./bower_components/bootstrap/fonts/**'], {})
+                    .pipe(gulp.dest(destDir + 'client/fonts'));
+            } else {
+                gulp.src('./.tmp/**')
+                    .pipe(gulp.dest(destDir + '.tmp'));
 
-        gulp.src([config.srcHeroku + args.repo + '/**'], {})
-            .pipe(gulp.dest(dest));
+                gulp.src('./bower.json')
+                    .pipe(gulp.dest(destDir + '/'));
 
-        if (args.repo === 'prod') {
-            gulp.src([config.build + '/**'], {
-                base: 'build'
-            })
-                .pipe(gulp.dest(dest + '/client'));
-            gulp.src(['./bower_components/bootstrap/fonts/**'], {})
-                .pipe(gulp.dest(dest + 'client/fonts'));
-        }
-        else {
-            gulp.src('./.tmp/**')
-                .pipe(gulp.dest(dest + '.tmp'));
-
-            gulp.src('./bower.json')
-                .pipe(gulp.dest(dest + '/'));
-
-            gulp.src([config.client + '/**'], {})
-                .pipe(gulp.dest(dest + '/client'));
-        }
-        gulp.src([config.serverDir + '/**'], {
-            base: 'src/server'
-        })
-            .pipe(gulp.dest(dest + '/server'));
+                gulp.src([config.client + '/**'], {})
+                    .pipe(gulp.dest(destDir + '/client'));
+            }
+            gulp.src([config.serverDir + '/**'], {
+                    base: 'src/server'
+                })
+                .pipe(gulp.dest(destDir + '/server'));
+            if (i === dests.length) {
+                done();
+            }
+        });
     });
 });
 
-gulp.task('heroku-clean', [], function () {
-    var destQa = './heroku/qa/';
-    var destProd = './heroku/prod/';
-    var delconfig = [].concat(destQa + '**/*', destQa + '.tmp/**', '!' + destQa + '.gitignore', '!' + destQa + '.git/**',
-        destProd + '**/*', destProd + '.tmp/**', '!' + destProd + '.gitignore', '!' + destProd + '.git/**');
-    log('Cleaning: ' + $.util.colors.blue(delconfig));
-    del(delconfig, function () {
-        console.log();
+gulp.task('deploy-clean', function () {
+    var dests = ['qa', 'prod'];
+    dests.forEach(function (dest) {
+        var destDir = config.deploy + dest + '/';
+        var delconfig = [].concat(destDir + '**/*', destDir + '.tmp/**', '!' + destDir + '.gitignore', '!' + destDir + '.git/**');
+        log('Cleaning: ' + $.util.colors.blue(delconfig));
+        del(delconfig, function () {
+            console.log('Cleaned ' + destDir);
+        });
     });
+});
+
+gulp.task('deploy-push-heroku', args.min ? null : ['deploy-build'], function (cb) {
+    if (args.repo) {
+        //TODO: Might need to tweak timeout. We shouldn't need it at all as this should only run after deploy-build is finished.
+        var timeout = 1000;
+        if (args.min) {
+            timeout = 0;
+        }
+        setTimeout(function () {
+            var exec = require('child_process').exec;
+            var message = args.m || 'Heroku Push ' + args.repo;
+            var command = 'cd deploy/' + args.repo + ' && git add . && git commit -m "' + message + '" && git push heroku master';
+            console.log('Git Command: ' + command);
+            var child = exec(command);
+            child.stdout.on('data', function (data) {
+                console.log(data);
+            });
+            child.stderr.on('data', function (data) {
+                console.log(data);
+            });
+            child.on('close', function (code) {
+                console.log('Finishing deploy-push-heroku: ' + code);
+            });
+        }, timeout);
+    } else {
+        throw 'Specify --repo with qa or prod';
+    }
 });
 
 /**
@@ -399,7 +439,7 @@ gulp.task('clean-code', function (done) {
 gulp.task('test', ['vet', 'templatecache'], function (done) {
     //TODO: Temporarily disabling testing as this breaks on paypal in constants.js file
     //done();
-    startTests(true /*singleRun*/, done);
+    startTests(true /*singleRun*/ , done);
 });
 
 /**
@@ -760,7 +800,7 @@ function getHeader() {
  * Can pass in a string, object or array.
  */
 function log(msg) {
-    if (typeof(msg) === 'object') {
+    if (typeof (msg) === 'object') {
         for (var item in msg) {
             if (msg.hasOwnProperty(item)) {
                 $.util.log($.util.colors.blue(msg[item]));
