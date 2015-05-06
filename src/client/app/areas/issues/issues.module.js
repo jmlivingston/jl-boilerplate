@@ -3,6 +3,6 @@
 
     angular.module('app.issues', [
         'app.core',
-        'app.widgets'
+        'app.components'
       ]);
 })();

@@ -80,11 +80,11 @@
             authObj.$createUser(user)
                 .then(function (userData) {
                     var credentials = {
-                        email: user.email,
-                        password: user.password
+                        email: user.Email,
+                        password: user.Password
                     };
                     var opts = {
-                        rememberMe: false //vm.rememberMe
+                        rememberMe: false //vm.RememberMe
                     };
                     user.id = userData.uid;
                     return service.userSet(user)

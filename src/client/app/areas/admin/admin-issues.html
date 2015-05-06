@@ -6,7 +6,7 @@
                 <a data-target="#tab-my-issues" aria-controls="tab-my-issues" role="tab" data-toggle="tab">{{pageStrings.MyIssues}} ({{(vm.issues | filter: vm.assignedFilter).length}})</a>
             </li>
             <li role="presentation" ng-repeat="status in vm.statuses"
-               ng-hide="(status === 'Submitted' && vm.rootScope.user.roles.editor) || (status === 'Complete' && vm.rootScope.user.roles.editor)">
+               ng-hide="(status === 'Submitted' && vm.rootScope.user.Roles.Editor) || (status === 'Complete' && vm.rootScope.user.Roles.Editor)">
                 <a data-target="#tab-{{$index}}" aria-controls="#tab-{{$index}}" role="tab" data-toggle="tab">{{status}} ({{(vm.issues | filter: { Status: status }).length}})</a>
             </li>
         </ul>
@@ -115,7 +115,7 @@
                     <div class="form-group">
                         <label>{{pageStrings.AssignedTo}}
                         </label>
-                        <select class="form-control" ng-options="val.email as val.name for val in vm.Users" ng-model="vm.Issue.AssignedTo"
+                        <select class="form-control" ng-options="val.Email as val.Name for val in vm.Users" ng-model="vm.Issue.AssignedTo"
                            ng-change="vm.assignUser(vm.Issue, val)">
                             <option value="">{{pageStrings.SelectUser}}</option>
                         </select>

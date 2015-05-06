@@ -5,7 +5,7 @@
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="content-settings">
             <div role="tabpanel">
-                <ul class="nav nav-tabs" role="tablist"  ng-hide="vm.rootScope.user.roles.editor">
+                <ul class="nav nav-tabs" role="tablist"  ng-hide="vm.rootScope.user.Roles.Editor">
                     <li role="presentation" class="cursor-pointer" ng-class="{active: vm.activeAdminTab == 0}">
                         <a data-target="#issues" aria-controls="issues" role="tab" data-toggle="tab" ng-click="vm.setTab('activeAdminTab', 0)">
                             {{pageStrings.Issues}} ({{vm.issuesCount}})

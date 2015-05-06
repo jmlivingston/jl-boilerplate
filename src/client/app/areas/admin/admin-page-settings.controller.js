@@ -20,8 +20,8 @@
             text: ''
         };
         vm.pageString = {
-            name: '',
-            value: ''
+            Name: '',
+            Value: ''
         };
         vm.deleteItem = deleteItem;
 
@@ -55,16 +55,16 @@
 
         function addString(category) {
             var item = {
-                name: vm.pageString.name,
-                value: vm.pageString.value
+                Name: vm.pageString.Name,
+                Value: vm.pageString.Value
             };
             var addCategory = category;
             if (!category) {
                 addCategory = vm.pageString.category;
             }
             dataservice.settings.content.strings.add(addCategory, item);
-            vm.pageString.name = '';
-            vm.pageString.value = '';
+            vm.pageString.Name = '';
+            vm.pageString.Value = '';
         }
 
         function deleteString(category, key) {

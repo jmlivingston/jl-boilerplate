@@ -7,19 +7,19 @@
     /* @ngInject */
     function LoginController(loginService, $location) {
         var vm = this;
-        vm.email = '';
-        vm.password = '';
-        vm.rememberMe = false;
+        vm.Email = '';
+        vm.Password = '';
+        vm.RememberMe = false;
         vm.login = login;
         vm.showError = false;
 
         function login() {
             var credentials = {
-                email: vm.email,
-                password: vm.password
+                email: vm.Email,
+                password: vm.Password
             };
             var opts = {
-                remember: (vm.rememberMe ? 'default' : 'sessionOnly')
+                remember: (vm.RememberMe ? 'default' : 'sessionOnly')
             };
             loginService.login(credentials, opts).then(redirect, showError);
 

@@ -14,8 +14,8 @@
             get: function (path) {
                 var deferred = $q.defer();
                 var firebaseRef = new Firebase(FBURL + path);
-                firebaseRef.orderByChild('deleted').equalTo(null).on('value', function (data) {
-                    var returnData = data.val(); //orderItems(data.val());
+                firebaseRef.orderByChild('Deleted').equalTo(null).on('value', function (data) {
+                    var returnData = data.val();
                     deferred.resolve(returnData);
                 });
                 return deferred.promise;
@@ -23,12 +23,12 @@
             getWithId: function (path) {
                 var deferred = $q.defer();
                 var firebaseRef = new Firebase(FBURL + path);
-                firebaseRef.orderByChild('deleted').equalTo(null).on('value', function (data) {
-                    var returnData = data.val(); //orderItems(data.val());
+                firebaseRef.orderByChild('Deleted').equalTo(null).on('value', function (data) {
+                    var returnData = data.val();
                     var returnArray = [];
                     for (var prop in returnData) {
                         if (returnData.hasOwnProperty(prop)) {
-                            returnData[prop]['id'] = prop;
+                            returnData[prop]['Id'] = prop;
                             returnArray.push(returnData[prop]);
                         }
                     }
@@ -154,7 +154,7 @@
             firebaseObj.$watch(function () {
                 if (firebaseObj.Items) {
                     var items = _.object(_.map(firebaseObj.Items, function (x) {
-                        return [x.name, x.value];
+                        return [x.Name, x.Value];
                     }));
                     if (scope['pageStrings']) {
                         scope['pageStrings'] = mergeProperties(scope['pageStrings'], items);
@@ -189,7 +189,7 @@
             firebaseObj.$watch(function () {
                 if (firebaseObj.Items) {
                     var items = _.object(_.map(firebaseObj.Items, function (x) {
-                        return [x.name, x.value];
+                        return [x.Name, x.Value];
                     }));
                     scope['globalStrings'] = items;
                     deferred.resolve(items);
@@ -216,8 +216,8 @@
             var rootPath = stringsUrl + category + '/Items/' + key;
             var ref = new $window.Firebase(FBURL + rootPath);
             var obj = $firebaseObject(ref);
-            obj.name = item.name;
-            obj.value = item.value;
+            obj.Name = item.Name;
+            obj.Value = item.Value;
             obj.$save();
         }
 
@@ -254,28 +254,6 @@
                     }
                 });
             return ref;
-        }
-
-        function orderItems(items) {
-            return _.sortBy(items, function (item) {
-                if (item.order) {
-                    if (item.features) {
-                        item.features = orderItems(item.features);
-                    }
-                    if (item.promotions) {
-                        item.promotions = orderItems(item.promotions);
-                    }
-                    if (item.paragraphs) {
-                        item.paragraphs = orderItems(item.paragraphs);
-                    }
-                    if (item.items) {
-                        item.items = orderItems(item.items);
-                    }
-                    return parseFloat(item.order);
-                } else {
-                    return;
-                }
-            });
         }
     }
 })();

@@ -3,12 +3,11 @@
 
     angular.module('app', [
         'app.core',
-        'app.widgets',
+        'app.components',
         'app.admin',
         'app.home',
         'app.issues',
         'app.account',
         'app.layout'
     ]);
-
 })();

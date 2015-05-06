@@ -223,9 +223,7 @@ gulp.task('deploy-build', args.min ? null : ['build', 'styles', 'templatecache']
     } else {
         dests = ['qa', 'prod'];
     }
-    var i = 0;
     dests.forEach(function (dest) {
-        i++;
         var destDir = config.deploy + dest + '/';
         var delconfig = [].concat(destDir + '**/*', destDir + '.tmp/**', '!' + destDir + '.gitignore', '!' + destDir + '.git/**');
         log('Cleaning: ' + $.util.colors.blue(delconfig));
@@ -255,9 +253,6 @@ gulp.task('deploy-build', args.min ? null : ['build', 'styles', 'templatecache']
                     base: 'src/server'
                 })
                 .pipe(gulp.dest(destDir + '/server'));
-            if (i === dests.length) {
-                done();
-            }
         });
     });
 });

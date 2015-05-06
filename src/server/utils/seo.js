@@ -13,31 +13,31 @@ module.exports = function () {
         var readyPromise = q.defer();
 
         var firebase = new Firebase(constants.firebaseUrl);
-        firebase.child('/seo/default').once('value', success, fail);
+        firebase.child('/SEO/Default').once('value', success, fail);
 
         function success(data) {
             var seoDefault = {
-                title: ' ',
-                description: '',
-                keywords: '',
-                author: '',
-                pageTitle: '',
-                url: '',
-                siteName: '',
-                firebaseUrl: '',
-                image: '',
-                imageDataUri: '',
-                imageDataUriFileName: ''
+                Title: ' ',
+                Description: '',
+                Keywords: '',
+                Author: '',
+                PageTitle: '',
+                Url: '',
+                SiteName: '',
+                FirebaseUrl: '',
+                Image: '',
+                ImageDataUri: '',
+                ImageDataUriFileName: ''
             };
             var seoData = data.val() || seoDefault;
-            seoData.firebaseUrl = constants.firebaseUrl;
+            seoData.FirebaseUrl = constants.firebaseUrl;
             var path = req.originalUrl.split('/')[1];
             path = path && ' | ' + path[0].toUpperCase() + path.slice(1);
-            seoData['pageTitle'] = (seoData.title + path).split('?')[0];
-            seoData['url'] =  req.protocol + '://' + req.get('host');
-            seoData['image'] = seoData.url + '/seoimage.jpg';
-            delete seoData.imageDataUri;
-            delete seoData.imageDataUriFileName;
+            seoData.PageTitle = (seoData.Title + path).split('?')[0];
+            seoData.Url =  req.protocol + '://' + req.get('host');
+            seoData.Image = seoData.Url + '/seoimage.jpg';
+            delete seoData.ImageDataUri;
+            delete seoData.ImageDataUriFileName;
             readyPromise.resolve(seoData);
         }
 
@@ -52,7 +52,7 @@ module.exports = function () {
         var readyPromise = q.defer();
 
         var firebase = new Firebase(constants.firebaseUrl);
-        firebase.child('/seo/default/imageDataUri').once('value', success, fail);
+        firebase.child('/SEO/Default/ImageDataUri').once('value', success, fail);
 
         function success(data) {
             var imageDataUri = data.val();

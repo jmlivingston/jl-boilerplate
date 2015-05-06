@@ -21,17 +21,17 @@
         vm.assignUser = assignUser;
         vm.Statuses = ['Submitted', 'Assigned', 'In Progress', 'Complete'];
         vm.Users = [{
-            email: 'hsimpson@test.com',
-            name: 'Homer Simpson'
+            Email: 'hsimpson@test.com',
+            Name: 'Homer Simpson'
         }, {
-            email: 'ccarlson@test.com',
-            name: 'Carl Carlson'
+            Email: 'ccarlson@test.com',
+            Name: 'Carl Carlson'
         }, {
-            email: 'lleonard@test.com',
-            name: 'Lenny Leonard'
+            Email: 'lleonard@test.com',
+            Name: 'Lenny Leonard'
         }, {
-            email: 'mburns@test.com',
-            name: 'Montgomery Burns'
+            Email: 'mburns@test.com',
+            Name: 'Montgomery Burns'
         }];
         vm.save = save;
         activate();
@@ -61,7 +61,7 @@
 
         function assignedFilter(item) {
             if (vm.rootScope.user) {
-                return (item.Status === 'Assigned' || item.Status === 'In Progress' || item.Status === 'Submitted') && item.AssignedTo === vm.rootScope.user.email;
+                return (item.Status === 'Assigned' || item.Status === 'In Progress' || item.Status === 'Submitted') && item.AssignedTo === vm.rootScope.user.Email;
             } else {
                 return true;
             }
@@ -69,15 +69,15 @@
 
         function save() {
             var item = angular.copy(vm.Issue);
-            delete item.id;
-            dataservice.update('/Issues', vm.Issue.id, item, null, vm.Issue.FirstName + ' ' + vm.Issue.LastName + ' Issue');
+            delete item.Id;
+            dataservice.update('/Issues', vm.Issue.Id, item, null, vm.Issue.FirstName + ' ' + vm.Issue.LastName + ' Issue');
         }
 
         function assignUser() {
             var assignee = _.find(vm.Users, function (u) {
-                return u.email === vm.Issue.AssignedTo;
+                return u.Email === vm.Issue.AssignedTo;
             });
-            vm.Issue.AssignedToName = assignee.name;
+            vm.Issue.AssignedToName = assignee.Name;
         }
     }
 })();

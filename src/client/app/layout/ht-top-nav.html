@@ -1,60 +1,60 @@
 <nav class="navbar navbar-fixed-top navbar-inverse" ng-controller="ShellController as vm">
-   <div class="container">
-    <div class="navbar-header">
-        <a href="/" class="navbar-brand">
-            <span class="brand-title">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/" class="navbar-brand">
+                <span class="brand-title">
                 <span class="glyphicon glyphicon-home"></span>&nbsp;Home
-            </span>
-        </a>
-        <a class="btn navbar-btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </a>
-    </div>
-    <div class="navbar-collapse collapse">
-        <div class="pull-right navbar-logo">
-            <ul class="nav navbar-nav pull-right">
-                <li>
-                    <a href="/issues">
+                </span>
+            </a>
+            <a class="btn navbar-btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <div class="pull-right navbar-logo">
+                <ul class="nav navbar-nav pull-right">
+                    <li>
+                        <a href="/issues">
                         Add Issue
                     </a>
-                </li>
-                <li ng-show="vm.rootScope.user">
-                    <a href="/admin">
+                    </li>
+                    <li ng-show="vm.rootScope.user">
+                        <a href="/admin">
                         Admin
                     </a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Change User
-                        <span ng-show="vm.rootScope.user.roles.admin">({{vm.rootScope.user.firstName}} - Admin)</span>
-                        <span ng-show="vm.rootScope.user.roles.editor">({{vm.rootScope.user.firstName}} - Editor)</span>
+                        <span ng-show="vm.rootScope.user.Roles.Admin">({{vm.rootScope.user.FirstName}} - Admin)</span>
+                        <span ng-show="vm.rootScope.user.Roles.Editor">({{vm.rootScope.user.FirstName}} - Editor)</span>
                         <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li ng-hide="vm.rootScope.user">
-                            <a href="/login">
+                        <ul class="dropdown-menu" role="menu">
+                            <li ng-hide="vm.rootScope.user">
+                                <a href="/login">
                                 Login
                             </a>
-                        </li>
-                        <li ng-show="vm.rootScope.user">
-                            <a href="" ng-click="vm.logout()">
-                                Logout {{vm.rootScope.user.firstName}}
-                                <span ng-show="vm.rootScope.user.roles.admin"> (Admin)</span>
-                                <span ng-show="vm.rootScope.user.roles.editor"> (Editor)</span>
+                            </li>
+                            <li ng-show="vm.rootScope.user">
+                                <a href="" ng-click="vm.logout()">
+                                Logout {{vm.rootScope.user.FirstName}}
+                                <span ng-show="vm.rootScope.user.Roles.Admin"> (Admin)</span>
+                                <span ng-show="vm.rootScope.user.Roles.Editor"> (Editor)</span>
                             </a>
-                        </li>
-                        <li role="presentation" class="divider"></li>
-                        <li ng-repeat="u in vm.Users">
-                            <a href="" ng-click="vm.login(u)">
-                                {{u.name}} <span class="glyphicon glyphicon-ok" ng-show="u.email === vm.rootScope.user.email"></span>
+                            </li>
+                            <li role="presentation" class="divider"></li>
+                            <li ng-repeat="u in vm.Users">
+                                <a href="" ng-click="vm.login(u)">
+                                {{u.Name}} <span class="glyphicon glyphicon-ok" ng-show="u.Email === vm.rootScope.user.Email"></span>
                             </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-       </div>
     </div>
 </nav>

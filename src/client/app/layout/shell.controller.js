@@ -20,19 +20,19 @@
         };
         vm.selectedUser = {};
         vm.Users = [{
-            email: 'hsimpson@test.com',
-            name: 'Homer Simpson (Editor)',
-            password: 'hsimpson'
+            Email: 'hsimpson@test.com',
+            Name: 'Homer Simpson (Editor)',
+            Password: 'hsimpson'
         }, {
-            email: 'ccarlson@test.com',
-            name: 'Carl Carlson (Editor)',
-            password: 'ccarlson'
+            Email: 'ccarlson@test.com',
+            Name: 'Carl Carlson (Editor)',
+            Password: 'ccarlson'
         }, {
-            email: 'mburns@test.com',
-            name: 'Montgomery Burns (Admin)',
-            password: 'mburns'
+            Email: 'mburns@test.com',
+            Name: 'Montgomery Burns (Admin)',
+            Password: 'mburns'
         }, {
-            name: 'Public User'
+            Name: 'Public User'
         }];
 
         activate();
@@ -54,12 +54,12 @@
         }
 
         function login(selectedUser) {
-            if (selectedUser.name === 'Public User') {
+            if (selectedUser.Name === 'Public User') {
                 logout();
             } else {
                 var credentials = {
-                    email: selectedUser.email,
-                    password: selectedUser.password
+                    email: selectedUser.Email,
+                    password: selectedUser.Password
                 };
                 var opts = {
                     remember: true

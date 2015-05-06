@@ -9,13 +9,13 @@
     </div>
     <div ng-show="vm.initialized">
        <p>Used by Admins to edit any text on any page</p>
-        <div ng-repeat="(key, page) in vm.pageSettings | orderBy: 'name'" ng-cloak>
+        <div ng-repeat="(key, page) in vm.pageSettings | orderBy: 'Name'" ng-cloak>
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
                         <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" data-target="#page-settings-collapse{{$index}}" aria-expanded="true" aria-controls="page-settings-collapse{{$index}}">
-                        {{page.title}}
+                        {{page.Title}}
                     </a>
                 </h4>
                     </div>
@@ -30,12 +30,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="item in page.Items | toArray | orderBy: 'title'">
+                                    <tr ng-repeat="item in page.Items | toArray | orderBy: 'Title'">
                                         <td>
-                                            <input class="form-control input-sm" ng-model="item.name" disabled="disabled" />
+                                            <input class="form-control input-sm" ng-model="item.Name" disabled="disabled" />
                                         </td>
                                         <td>
-                                            <input class="form-control input-sm" ng-model="item.value" />
+                                            <input class="form-control input-sm" ng-model="item.Value" />
                                         </td>
                                         <td>
                                             <button class="btn btn-success btn-sm" ng-click="vm.saveString(key, item.$key, item)" title="Save"><span class="glyphicon glyphicon-ok"></span>
@@ -66,19 +66,19 @@
                     <form>
                         <div class="form-group">
                             <label>{{pageStrings.Name}}</label>
-                            <input class="form-control" ng-model="vm.pageString.name" />
+                            <input class="form-control" ng-model="vm.pageString.Name" />
                         </div>
                         <div class="form-group">
                             <label>{{pageStrings.Value}}</label>
-                            <textarea class="form-control" ng-model="vm.pageString.value"></textarea>
+                            <textarea class="form-control" ng-model="vm.pageString.Value"></textarea>
                         </div>
                         <div class="form-group">
                             <label>{{pageStrings.Page}}</label>
-                            <select class="form-control" ng-options="key as val.title for (key, val) in vm.pageSettings" ng-model="vm.pageString.category">
+                            <select class="form-control" ng-options="key as val.Title for (key, val) in vm.pageSettings" ng-model="vm.pageString.category">
                                 <option value="">{{pageStrings.SelectPage}}</option>
                             </select>
                         </div>
-                        <button class="btn btn-success pull-right" ng-click="vm.addString()" ng-disabled="!vm.pageString.name || !vm.pageString.value || !vm.pageString.category">
+                        <button class="btn btn-success pull-right" ng-click="vm.addString()" ng-disabled="!vm.pageString.Name || !vm.pageString.Value || !vm.pageString.category">
                             {{pageStrings.Add}} <span class="glyphicon glyphicon-ok"></span>
                         </button>
                     </form>

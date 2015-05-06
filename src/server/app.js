@@ -29,7 +29,7 @@ console.log('PORT=' + port);
 console.log('NODE_ENV=' + environment);
 
 app.get('/', function (req, res) {
-    seo.getData('default', req).then(function (seoData) {
+    seo.getData('Default', req).then(function (seoData) {
         res.render('index', {
             layoutPath: layoutPath,
             seo: seoData
@@ -46,19 +46,6 @@ app.get('/seoimage.jpg', function (req, res) {
         });
         res.end(img);
     });
-});
-
-app.get('/imagesnames/:slides/:id', function (req, res) {
-    var Firebase = require('firebase');
-    var q = require('q');
-    var firebase = new Firebase(constants.firebaseUrl);
-    firebase.child('/images/' + req.params.slides + '/' + req.params.id + '/fileName').once('value', success, fail);
-
-    function success(data) {
-        res.send(data.val());
-    }
-
-    function fail() {}
 });
 
 switch (environment) {
@@ -98,7 +85,7 @@ switch (environment) {
 }
 
 app.use('/*', function (req, res) {
-    seo.getData('default', req).then(function (seoData) {
+    seo.getData('Default', req).then(function (seoData) {
         res.render('index', {
             layoutPath: layoutPath,
             seo: seoData

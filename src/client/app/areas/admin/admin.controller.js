@@ -11,7 +11,7 @@
         var dataChangedList = [];
         var vm = this;
         vm.rootScope = $rootScope;
-        //if(vm.rootScope.user.roles && vm.rootScope.user.roles.admin) {
+        //if(vm.rootScope.user.Roles && vm.rootScope.user.Roles.Admin) {
         vm.activeAdminTab = $cookies.activeAdminTab;
         //}
         vm.setTab = setTab;

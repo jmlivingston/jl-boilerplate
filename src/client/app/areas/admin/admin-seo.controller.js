@@ -21,7 +21,7 @@
         }
 
         function activate() {
-            dataservice.getAll('/SEO/default')
+            dataservice.getAll('/SEO/Default')
                 .then(function (data) {
                     vm.seoItem = data;
                     vm.initialized = true;
@@ -29,7 +29,7 @@
         }
 
         function save() {
-            dataservice.update('/SEO', 'default', vm.seoItem, vm.seoItem, vm.seoItem.tabTitle);
+            dataservice.update('/SEO', 'Default', vm.seoItem, vm.seoItem, vm.seoItem.TabTitle);
         }
 
         function updateSeoImage() {
@@ -37,8 +37,8 @@
             var fileReader = new FileReader();
             fileReader.onloadend = function (e) {
                 var data = e.target.result;
-                vm.seoItem.imageDataUri = data;
-                vm.seoItem.imageDataUriFileName = file.name;
+                vm.seoItem.ImageDataUri = data;
+                vm.seoItem.ImageDataUriFileName = file.Name;
             };
             fileReader.readAsDataURL(file);
         }

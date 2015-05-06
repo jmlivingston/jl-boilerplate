@@ -68,7 +68,7 @@
                         stateCounts.errors++;
                         handlingStateChangeError = true;
                         var destination = (toState &&
-                            (toState.title || toState.name || toState.loadedTemplateUrl)) ||
+                            (toState.title || toState.Name || toState.loadedTemplateUrl)) ||
                             'unknown target';
                         var msg = 'Error routing to ' + destination + '. ' +
                             (error.data || '') + '. <br/>' + (error.statusText || '') +
