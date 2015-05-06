@@ -1,0 +1,134 @@
+<h1 id="jl-boilerplate">jl-boilerplate</h1>
+<h2 id="technologies">Technologies</h2>
+<ul>
+<li>Node</li>
+<li>Express</li>
+<li>Jade</li>
+<li>Angular</li>
+<li>Firebase</li>
+<li>Gulp</li>
+</ul>
+<h2 id="features">Features</h2>
+<ul>
+<li>Responsive Design (Bootstrap)</li>
+<li>Firebase Integration</li>
+<li>Authentication and role-based security (Firebase)</li>
+<li>SEO (OpenGraph)</li>
+<li>Basic Crud Operations</li>
+<li>Heroku Deployment</li>
+<li>Content Administration</li>
+</ul>
+<h2 id="prerequisites">Prerequisites</h2>
+<ol>
+<li><p>Install <a href="http://nodejs.org">Node.js</a></p>
+<ul>
+<li>on OSX use <a href="http://brew.sh">homebrew</a> <code>brew install node</code></li>
+<li>on Windows use <a href="https://chocolatey.org/">chocolatey</a> <code>choco install nodejs</code></li>
+</ul>
+</li>
+<li><p>Install Yeoman <code>npm install -g yo</code></p>
+</li>
+<li><p>Install these NPM packages globally</p>
+<pre><code class="lang-bash"> npm install -g bower gulp nodemon`
+</code></pre>
+<blockquote>
+<p>Refer to these <a href="https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md">instructions on how to not require sudo</a></p>
+</blockquote>
+</li>
+<li><p>Create a Firebase instance and copy the URL and token to server/constants.js</p>
+</li>
+<li><p>If using Heroku, you can create a QA and/or PROD environment. There are some gulp tasks (see below) for easy deployment. Otherwise, deployment files are copied to the deploy folder and can be easily deployed on a different Node environment.</p>
+</li>
+</ol>
+<h2 id="running-jl-boilerplate">Running jl-boilerplate</h2>
+<h3 id="linting">Linting</h3>
+<ul>
+<li>Run code analysis using <code>gulp vet</code>. This runs jshint, jscs, and plato.</li>
+</ul>
+<h3 id="tests">Tests</h3>
+<ul>
+<li>Run the unit tests using <code>gulp test</code> (via karma, mocha, sinon).</li>
+</ul>
+<h3 id="running-in-dev-mode">Running in dev mode</h3>
+<ul>
+<li><p>Run the project with <code>gulp serve-dev --sync</code></p>
+</li>
+<li><p><code>--sync</code> opens it in a browser and updates the browser with any files changes.</p>
+</li>
+</ul>
+<h3 id="building-the-project">Building the project</h3>
+<ul>
+<li>Build the optimized project using <code>gulp build</code></li>
+<li>This create the optimized code for the project and puts it in the build folder</li>
+</ul>
+<h3 id="running-the-optimized-code">Running the optimized code</h3>
+<ul>
+<li>Run the optimize project from the build folder with <code>gulp serve-build</code></li>
+</ul>
+<h3 id="heroku-integration">Heroku Integration</h3>
+<ul>
+<li>Run <code>gulp deploy-build</code> to create qa and prod folders in the deploy folder. If you have already run &#39;gulp build&#39;, you can use the --min option.</li>
+<li>Once the prod and qa folders are created and you have created an app within Heroku, you will want to cd into those folders and initialize git using Heroku&#39;s deploy instructions. It should look something like this.</li>
+</ul>
+<p><code>heroku login</code>
+<code>git init</code>
+<code>heroku git:remote -a my-app-qa</code></p>
+<p>Note: (Replace with your app name. I use qa and prod suffixes to differentiate what type of environment it is.)</p>
+<ul>
+<li>Once you have done this, you can return to the root directory and deploy to Heroku using the following commands:</li>
+</ul>
+<p><code>gulp deploy-push-heroku --repo qa|prod --min -m &quot;My commit message&quot;</code></p>
+<p>(If you have made changes and not run &#39;gulp build&#39;, you must omit the --min option. --repo is required. --m is optional)</p>
+<pre><code>- For example:
+
+    `gulp deploy-push-heroku --repo qa`
+</code></pre><p>(Assumes you need to build, are pushing to QA, and will use the default commit message.)</p>
+<pre><code>    `gulp deploy-push-heroku --repo prod --min --m &quot;New updates&quot;`
+</code></pre><p>(Assumes you don&#39;t need to build, are pushing to PROD, and will have a custom commit message.)</p>
+<h2 id="exploring-jl-boilerplate">Exploring jl-boilerplate</h2>
+<p>jl-boilerplate Angular starter project</p>
+<h3 id="structure">Structure</h3>
+<p>The structure also contains a gulpfile.js and a server folder. The server is there just so we can serve the app using node. Feel free to use any server you wish.</p>
+<pre><code>/src
+    /client
+        /app
+        /content
+</code></pre><h3 id="installing-packages">Installing Packages</h3>
+<p>When you generate the project it should run these commands, but if you notice missing packages, run these again:</p>
+<ul>
+<li><code>npm install</code></li>
+<li><code>bower install</code></li>
+</ul>
+<h3 id="the-modules">The Modules</h3>
+<p>The app has 4 feature modules and depends on a series of external modules and custom but cross-app modules</p>
+<pre><code>app --&gt; [
+        app.admin,
+        app.dashboard,
+        app.layout,
+        app.widgets,
+        app.core --&gt; [
+            ngAnimate,
+            ngSanitize,
+            ui.router,
+            blocks.exception,
+            blocks.logger,
+            blocks.router
+        ]
+    ]
+</code></pre><h4 id="core-module">core Module</h4>
+<p>Core modules are ones that are shared throughout the entire application and may be customized for the specific application. Example might be common data services.</p>
+<p>This is an aggregator of modules that the application will need. The <code>core</code> module takes the blocks, common, and Angular sub-modules as dependencies.</p>
+<h4 id="blocks-modules">blocks Modules</h4>
+<p>Block modules are reusable blocks of code that can be used across projects simply by including them as dependencies.</p>
+<h5 id="blocks-logger-module">blocks.logger Module</h5>
+<p>The <code>blocks.logger</code> module handles logging across the Angular app.</p>
+<h5 id="blocks-exception-module">blocks.exception Module</h5>
+<p>The <code>blocks.exception</code> module handles exceptions across the Angular app.</p>
+<p>It depends on the <code>blocks.logger</code> module, because the implementation logs the exceptions.</p>
+<h5 id="blocks-router-module">blocks.router Module</h5>
+<p>The <code>blocks.router</code> module contains a routing helper module that assists in adding routes to the $routeProvider.</p>
+<p><strong>Forked and Tweaked from HotTowel Angular</strong></p>
+<blockquote>
+<p><em>Opinionated AngularJS style guide for teams by <a href="//twitter.com/john_papa">@john_papa</a></em></p>
+<p>More details about the styles and patterns used in this app can be found in my <a href="https://github.com/johnpapa/angularjs-styleguide">AngularJS Style Guide</a> and my <a href="http://jpapa.me/ngclean">AngularJS Patterns: Clean Code</a> course at <a href="http://pluralsight.com/training/Authors/Details/john-papa">Pluralsight</a> and working in teams.</p>
+</blockquote>

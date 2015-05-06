@@ -4,6 +4,7 @@ var config = require('./gulp.config')();
 var del = require('del');
 var glob = require('glob');
 var gulp = require('gulp');
+var markdown = require('gulp-markdown');
 var path = require('path');
 var _ = require('lodash');
 /* jshint -W079 */
@@ -168,6 +169,12 @@ gulp.task('serve-specs', ['build-specs'], function (done) {
     //isDev, specRunner
     serve(true, true);
     done();
+});
+
+gulp.task('readme', function () {
+    return gulp.src('README.md')
+        .pipe(markdown())
+        .pipe(gulp.dest('./'));
 });
 
 /**
