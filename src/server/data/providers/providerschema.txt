@@ -1,0 +1,73 @@
+var q = require('q');
+var RestContract = require('./rest.contract.js');
+var logger = require('../utils/logger.js');
+
+var service = {
+    get: get, //RETURN: 1. An array of items: { data: [] } 2. A single item: { data: {} } 3. An error: { error: ''}
+    post: post, //RETURN: 1. An array of ids: { data: [] } 2. A single id: { data: 7 } 3. An error: { error: ''}
+    put: put, //RETURN: 1. An array of ids: { data: [] } 2. A single data: { id: 7 } 3. An error: { error: ''}
+    delete: deleteItem //RETURN: 1. A boolean { succes: true | false } 3. An error: { error: ''}
+};
+
+function get(collection, id) {
+    logger.log('get ' + collection + ' ' + id);
+    var deferred = q.defer();
+    if(id) {
+        //implementation details
+        //deferred.resolve(new RestContract.GetById(item));
+    }
+    else {
+        //implementation details
+        //deferred.resolve(new RestContract.Get(item));
+    }
+    deferred.resolve('todo');
+    return deferred.promise;
+}
+
+function post(collection, newItem) {
+    logger.log('post ' + collection + ' ' + JSON.stringify(newItem));
+    if (Array.isArray(newItem)) {
+        return service.postBatch(collection, newItem);
+    } else {
+        var deferred = q.defer();
+        //implementation details
+        //deferred.resolve(new RestContract.PostById({ id: newItem.Id, success: true });
+        deferred.resolve('todo');
+        return deferred.promise;
+    }
+}
+
+function postBatch(collection, items) {
+    logger.log('post batch' + collection + ' ' + JSON.stringify(items));
+    var deferred = q.defer();
+    var promises = items.map(function (item) {
+        return service.post(collection, item);
+    });
+    q.all(promises).then(function (results) {
+        //implementation details
+        //deferred.resolve(new RestContract.Post([{ id: 1, success: true }, { id: 2, success: false }]);
+    }, function (err) {
+        deferred.resolve(false);
+    });
+    return deferred.promise;
+}
+
+function put(collection, item) {
+    logger.log('put ' + collection + ' ' + JSON.stringify(item));
+    var deferred = q.defer();
+    //implementation details
+    //deferred.resolve(new RestContract.PutById({ id: item.id, success: true }]);
+    deferred.resolve('todo');
+    return deferred.promise;
+}
+
+function deleteItem(collection, id) {
+    logger.log('delete ' + collection + ' ' + id);
+    var deferred = q.defer();
+    //implementation details
+    //deferred.resolve(new RestContract.DeleteById({ id: 1, success: true }]);
+    deferred.resolve('todo');
+    return deferred.promise;
+}
+
+module.exports = service;

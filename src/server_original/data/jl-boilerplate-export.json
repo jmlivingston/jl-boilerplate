@@ -1,0 +1,783 @@
+{
+  "Issues" : {
+    "-JoWSxtKewC9hEfVj03j" : {
+      "Address1" : "44315 Claremont Point",
+      "AssignedTo" : "mburns@test.com",
+      "AssignedToName" : "Montgomery Burns",
+      "City" : "Clearwater",
+      "Created" : "2015-05-01T02:40:27.383Z",
+      "Description" : "mattis nibh ligula nec sem duis aliquam",
+      "Email" : "jrose0@wsj.com",
+      "FirstName" : "Jonathan",
+      "LastName" : "Rose",
+      "Organization" : "Vinte",
+      "Phone" : "(445) 048-1919",
+      "State" : "FL",
+      "Status" : "Submitted",
+      "Subject" : "magna at nunc commodo",
+      "ZipCode" : "34629"
+    },
+    "-JoWSxtMFADH3GaNsU_3" : {
+      "Address1" : "282 Sage Drive",
+      "AssignedTo" : "ccarlson@test.com",
+      "AssignedToName" : "Carl Carlson",
+      "City" : "San Francisco",
+      "Created" : "2015-04-16T09:54:57.377Z",
+      "Description" : "orci mauris lacinia sapien quis libero",
+      "Email" : "amccoy1@youtube.com",
+      "FirstName" : "Alan",
+      "LastName" : "Mccoy",
+      "Organization" : "Npath",
+      "Phone" : "(202) 583-2578",
+      "State" : "CA",
+      "Status" : "In Progress",
+      "Subject" : "orci luctus et",
+      "ZipCode" : "94105"
+    },
+    "-JoWSxtOHzd3TH4BuVC6" : {
+      "Address1" : "7 Toban Way",
+      "AssignedTo" : "ccarlson@test.com",
+      "AssignedToName" : "Carl Carlson",
+      "City" : "Duluth",
+      "Created" : "2015-05-01T21:47:53.397Z",
+      "Description" : "orci luctus et ultrices posuere cubilia",
+      "Email" : "esullivan2@mlb.com",
+      "FirstName" : "Ernest",
+      "LastName" : "Sullivan",
+      "Organization" : "Kazu",
+      "Phone" : "(867) 352-4987",
+      "State" : "MN",
+      "Status" : "Assigned",
+      "Subject" : "at velit vivamus",
+      "ZipCode" : "55811"
+    },
+    "-JoWSxtQ1eNkOxTSFIjd" : {
+      "Address1" : "72 Steensland Hill",
+      "AssignedTo" : "hsimpson@test.com",
+      "AssignedToName" : "Homer Simpson",
+      "City" : "Omaha",
+      "Created" : "2015-04-23T07:44:09.367Z",
+      "Description" : "rutrum at lorem integer tincidunt ante vel ipsum praesent",
+      "Email" : "jgordon3@nymag.com",
+      "FirstName" : "Jennifer",
+      "LastName" : "Gordon",
+      "Organization" : "BlogXS",
+      "Phone" : "(419) 593-0303",
+      "State" : "NE",
+      "Status" : "In Progress",
+      "Subject" : "ultrices posuere",
+      "ZipCode" : "68164"
+    },
+    "-JoWSxtXdhgIvlWaQl3r" : {
+      "Address1" : "85 Westerfield Plaza",
+      "AssignedTo" : "mburns@test.com",
+      "AssignedToName" : "Montgomery Burns",
+      "City" : "Lubbock",
+      "Created" : "2015-04-18T20:34:49.349Z",
+      "Description" : "duis at velit eu est congue",
+      "Email" : "jwilson4@cyberchimps.com",
+      "FirstName" : "Jonathan",
+      "LastName" : "Wilson",
+      "Organization" : "Kamba",
+      "Phone" : "(770) 051-6910",
+      "State" : "TX",
+      "Status" : "Submitted",
+      "Subject" : "donec dapibus duis at",
+      "ZipCode" : "79405"
+    },
+    "-JoWSxt_Jup8UZxbo6uK" : {
+      "Address1" : "230 Macpherson Trail",
+      "AssignedTo" : "mburns@test.com",
+      "AssignedToName" : "Montgomery Burns",
+      "City" : "Abilene",
+      "Created" : "2015-04-21T13:54:55.913Z",
+      "Description" : "rutrum at lorem integer tincidunt ante vel ipsum praesent",
+      "Email" : "dclark5@mac.com",
+      "FirstName" : "Diane",
+      "LastName" : "Clark",
+      "Organization" : "Meevee",
+      "Phone" : "(702) 778-7647",
+      "State" : "TX",
+      "Status" : "Complete",
+      "Subject" : "at diam nam tristique",
+      "ZipCode" : "79699"
+    },
+    "-JoWSxtbtOb0akOpucGT" : {
+      "Address1" : "821 Westend Plaza",
+      "AssignedTo" : "mburns@test.com",
+      "AssignedToName" : "Montgomery Burns",
+      "City" : "Mesquite",
+      "Created" : "2015-05-04T06:03:21.579Z",
+      "Description" : "pede malesuada in imperdiet et commodo vulputate",
+      "Email" : "tlawrence6@booking.com",
+      "FirstName" : "Theresa",
+      "LastName" : "Lawrence",
+      "Organization" : "Jazzy",
+      "Phone" : "(341) 271-4998",
+      "State" : "TX",
+      "Status" : "Submitted",
+      "Subject" : "id nisl",
+      "ZipCode" : "75185"
+    },
+    "-JoWSxtdPYWP-h-BY_KG" : {
+      "Address1" : "7 Cottonwood Place",
+      "AssignedTo" : "mburns@test.com",
+      "AssignedToName" : "Montgomery Burns",
+      "City" : "Alexandria",
+      "Created" : "2015-04-30T10:39:44.735Z",
+      "Description" : "ut ultrices vel augue vestibulum ante ipsum primis in",
+      "Email" : "ejames7@forbes.com",
+      "FirstName" : "Elizabeth",
+      "LastName" : "James",
+      "Organization" : "Pixoboo",
+      "Phone" : "(681) 480-6428",
+      "State" : "LA",
+      "Status" : "In Progress",
+      "Subject" : "metus aenean fermentum donec",
+      "ZipCode" : "71307"
+    },
+    "-JoWSxtg8CKckRGGLnWP" : {
+      "Address1" : "38 Bluestem Place",
+      "AssignedTo" : "mburns@test.com",
+      "AssignedToName" : "Montgomery Burns",
+      "City" : "Stamford",
+      "Created" : "2015-04-19T04:35:01.578Z",
+      "Description" : "nibh in hac habitasse platea dictumst aliquam augue",
+      "Email" : "kberry8@hexun.com",
+      "FirstName" : "Kathryn",
+      "LastName" : "Berry",
+      "Organization" : "Flashpoint",
+      "Phone" : "(807) 228-3083",
+      "State" : "CT",
+      "Status" : "Complete",
+      "Subject" : "ut nunc vestibulum ante ipsum",
+      "ZipCode" : "06922"
+    },
+    "-JoWSxtkL6T7oStyEvgd" : {
+      "Address1" : "3 Northview Pass",
+      "AssignedTo" : "ccarlson@test.com",
+      "AssignedToName" : "Carl Carlson",
+      "City" : "Prescott",
+      "Created" : "2015-04-28T09:54:41.791Z",
+      "Description" : "est lacinia nisi venenatis tristique fusce congue diam id ornare",
+      "Email" : "mowens9@wordpress.org",
+      "FirstName" : "Mary",
+      "LastName" : "Owens",
+      "Organization" : "Devpulse",
+      "Phone" : "(515) 094-7641",
+      "State" : "AZ",
+      "Status" : "In Progress",
+      "Subject" : "proin interdum",
+      "ZipCode" : "86305"
+    },
+    "-JoWSxtnP1B94mMuihbt" : {
+      "Address1" : "169 Moulton Avenue",
+      "AssignedTo" : "mburns@test.com",
+      "AssignedToName" : "Montgomery Burns",
+      "City" : "Maple Plain",
+      "Created" : "2015-04-24T01:44:06.487Z",
+      "Description" : "hac habitasse platea dictumst morbi vestibulum velit id pretium",
+      "Email" : "mortiza@artisteer.com",
+      "FirstName" : "Melissa",
+      "LastName" : "Ortiz",
+      "Organization" : "Voomm",
+      "Phone" : "(348) 784-2350",
+      "State" : "MN",
+      "Status" : "Assigned",
+      "Subject" : "quis augue",
+      "ZipCode" : "55572"
+    },
+    "-JoWSxtpsk15Dn4Utk_S" : {
+      "Address1" : "80 Thompson Place",
+      "AssignedTo" : "ccarlson@test.com",
+      "AssignedToName" : "Carl Carlson",
+      "City" : "New York City",
+      "Created" : "2015-05-03T08:03:37.480Z",
+      "Description" : "in libero ut massa volutpat convallis morbi",
+      "Email" : "charrisb@cam.ac.uk",
+      "FirstName" : "Carolyn",
+      "LastName" : "Harris",
+      "Organization" : "Wikizz",
+      "Phone" : "(793) 112-2092",
+      "State" : "NY",
+      "Status" : "Assigned",
+      "Subject" : "pharetra magna ac consequat",
+      "ZipCode" : "10019"
+    },
+    "-JoWSxtsVulyZfuHmzrd" : {
+      "Address1" : "092 Morrow Terrace",
+      "AssignedTo" : "hsimpson@test.com",
+      "AssignedToName" : "Homer Simpson",
+      "City" : "Las Vegas",
+      "Created" : "2015-04-18T00:23:50.961Z",
+      "Description" : "ut nulla sed accumsan felis ut at dolor quis odio",
+      "Email" : "hpowellc@toplist.cz",
+      "FirstName" : "Heather",
+      "LastName" : "Powell",
+      "Organization" : "Tazzy",
+      "Phone" : "(945) 885-7607",
+      "State" : "NV",
+      "Status" : "Assigned",
+      "Subject" : "convallis eget",
+      "ZipCode" : "89155"
+    },
+    "-JoWSxttBke_nXflQMzY" : {
+      "Address1" : "817 Straubel Way",
+      "AssignedTo" : "ccarlson@test.com",
+      "AssignedToName" : "Carl Carlson",
+      "City" : "Dallas",
+      "Created" : "2015-04-30T08:17:29.531Z",
+      "Description" : "ut nulla sed accumsan felis ut at",
+      "Email" : "jfreemand@si.edu",
+      "FirstName" : "Jessica",
+      "LastName" : "Freeman",
+      "Organization" : "Yadel",
+      "Phone" : "(224) 847-1401",
+      "State" : "TX",
+      "Status" : "In Progress",
+      "Subject" : "morbi a",
+      "ZipCode" : "75251"
+    },
+    "-JoWSxtuYP3ez-xzU4po" : {
+      "Address1" : "010 Stang Street",
+      "AssignedTo" : "mburns@test.com",
+      "AssignedToName" : "Montgomery Burns",
+      "City" : "Charlottesville",
+      "Created" : "2015-04-24T03:49:23.850Z",
+      "Description" : "ut volutpat sapien arcu sed",
+      "Email" : "jolsone@wisc.edu",
+      "FirstName" : "Joseph",
+      "LastName" : "Olson",
+      "Organization" : "Jabberbean",
+      "Phone" : "(359) 605-5335",
+      "State" : "VA",
+      "Status" : "Submitted",
+      "Subject" : "lorem ipsum dolor",
+      "ZipCode" : "22903"
+    },
+    "-JoWSxtvKORn7w7aIIh9" : {
+      "Address1" : "9 Esker Circle",
+      "AssignedTo" : "mburns@test.com",
+      "AssignedToName" : "Montgomery Burns",
+      "City" : "Trenton",
+      "Created" : "2015-05-03T20:00:53.829Z",
+      "Description" : "lectus vestibulum quam sapien varius ut blandit",
+      "Email" : "kperryf@uol.com.br",
+      "FirstName" : "Kelly",
+      "LastName" : "Perry",
+      "Organization" : "Oodoo",
+      "Phone" : "(331) 139-1857",
+      "State" : "NJ",
+      "Status" : "In Progress",
+      "Subject" : "aliquet ultrices erat",
+      "ZipCode" : "08619"
+    },
+    "-JoWSxtw_05-beLvGIQL" : {
+      "Address1" : "5324 Memorial Lane",
+      "AssignedTo" : "mburns@test.com",
+      "AssignedToName" : "Montgomery Burns",
+      "City" : "Canton",
+      "Created" : "2015-04-14T19:11:20.022Z",
+      "Description" : "nec nisi volutpat eleifend donec ut dolor morbi vel lectus",
+      "Email" : "mchapmang@histats.com",
+      "FirstName" : "Marie",
+      "LastName" : "Chapman",
+      "Organization" : "Riffpath",
+      "Phone" : "(498) 231-1845",
+      "State" : "OH",
+      "Status" : "Submitted",
+      "Subject" : "consequat in",
+      "ZipCode" : "44720"
+    },
+    "-JoWSxtxQEHH2xgpILoq" : {
+      "Address1" : "367 East Park",
+      "AssignedTo" : "hsimpson@test.com",
+      "AssignedToName" : "Homer Simpson",
+      "City" : "Orlando",
+      "Created" : "2015-04-28T03:27:26.155Z",
+      "Description" : "nec condimentum neque sapien placerat ante nulla justo aliquam",
+      "Email" : "nstanleyh@apple.com",
+      "FirstName" : "Nancy",
+      "LastName" : "Stanley",
+      "Organization" : "Fivebridge",
+      "Phone" : "(786) 731-9068",
+      "State" : "FL",
+      "Status" : "Assigned",
+      "Subject" : "curabitur gravida nisi",
+      "ZipCode" : "32830"
+    },
+    "-JoWSxtyJjuoy7miyOpF" : {
+      "Address1" : "7469 Fuller Terrace",
+      "AssignedTo" : "hsimpson@test.com",
+      "AssignedToName" : "Homer Simpson",
+      "City" : "Hicksville",
+      "Created" : "2015-04-28T18:55:11.685Z",
+      "Description" : "ut odio cras mi pede malesuada in imperdiet",
+      "Email" : "tshawi@geocities.com",
+      "FirstName" : "Theresa",
+      "LastName" : "Shaw",
+      "Organization" : "Layo",
+      "Phone" : "(479) 999-0878",
+      "State" : "NY",
+      "Status" : "In Progress",
+      "Subject" : "porta volutpat",
+      "ZipCode" : "11854"
+    },
+    "-JoWSxu04jxvZjr-fUhC" : {
+      "Address1" : "82 Upham Plaza",
+      "AssignedTo" : "ccarlson@test.com",
+      "AssignedToName" : "Carl Carlson",
+      "City" : "Phoenix",
+      "Created" : "2015-04-29T19:26:08.441Z",
+      "Description" : "cras in purus eu magna vulputate",
+      "Email" : "bricej@wp.com",
+      "FirstName" : "Beverly",
+      "LastName" : "Rice",
+      "Organization" : "Jaxbean",
+      "Phone" : "(342) 276-1728",
+      "State" : "AZ",
+      "Status" : "Assigned",
+      "Subject" : "penatibus et magnis",
+      "ZipCode" : "85053"
+    },
+    "-JoWSxu1TRVLCwt_KS8f" : {
+      "Address1" : "23262 Lotheville Trail",
+      "AssignedTo" : "mburns@test.com",
+      "AssignedToName" : "Montgomery Burns",
+      "City" : "New York City",
+      "Created" : "2015-04-20T18:08:42.568Z",
+      "Description" : "est congue elementum in hac",
+      "Email" : "ahillk@umn.edu",
+      "FirstName" : "Anne",
+      "LastName" : "Hill",
+      "Organization" : "Voomm",
+      "Phone" : "(129) 521-7530",
+      "State" : "NY",
+      "Status" : "Submitted",
+      "Subject" : "sed augue aliquam erat",
+      "ZipCode" : "10029"
+    },
+    "-JoWSxu3ubHNwruaoX_N" : {
+      "Address1" : "8 Blackbird Junction",
+      "AssignedTo" : "mburns@test.com",
+      "AssignedToName" : "Montgomery Burns",
+      "City" : "Lubbock",
+      "Created" : "2015-05-01T03:40:16.576Z",
+      "Description" : "vel pede morbi porttitor lorem id ligula suspendisse ornare consequat",
+      "Email" : "jnelsonl@indiegogo.com",
+      "FirstName" : "Jesse",
+      "LastName" : "Nelson",
+      "Organization" : "Jabberstorm",
+      "Phone" : "(748) 341-4290",
+      "State" : "TX",
+      "Status" : "Submitted",
+      "Subject" : "in quis justo",
+      "ZipCode" : "79452"
+    },
+    "-JoWSxu3ubHNwruaoX_O" : {
+      "Address1" : "06610 Cardinal Crossing",
+      "AssignedTo" : "mburns@test.com",
+      "AssignedToName" : "Montgomery Burns",
+      "City" : "Shawnee Mission",
+      "Created" : "2015-04-15T13:16:17.084Z",
+      "Description" : "non mattis pulvinar nulla pede",
+      "Email" : "mrosem@accuweather.com",
+      "FirstName" : "Marie",
+      "LastName" : "Rose",
+      "Organization" : "Babbleopia",
+      "Phone" : "(086) 429-5292",
+      "State" : "KS",
+      "Status" : "Submitted",
+      "Subject" : "ut erat id",
+      "ZipCode" : "66215"
+    },
+    "-JoWSxu5Froh0TXRH-eB" : {
+      "Address1" : "4 Charing Cross Street",
+      "AssignedTo" : "mburns@test.com",
+      "AssignedToName" : "Montgomery Burns",
+      "City" : "Erie",
+      "Created" : "2015-04-22T22:05:26.086Z",
+      "Description" : "pharetra magna vestibulum aliquet ultrices",
+      "Email" : "scoxn@foxnews.com",
+      "FirstName" : "Sara",
+      "LastName" : "Cox",
+      "Organization" : "Shuffledrive",
+      "Phone" : "(537) 250-9443",
+      "State" : "PA",
+      "Status" : "Complete",
+      "Subject" : "nulla quisque",
+      "ZipCode" : "16522"
+    },
+    "-JoWSxu5Froh0TXRH-eC" : {
+      "Address1" : "4180 Dapin Alley",
+      "AssignedTo" : "hsimpson@test.com",
+      "AssignedToName" : "Homer Simpson",
+      "City" : "Lancaster",
+      "Created" : "2015-04-30T17:17:05.724Z",
+      "Description" : "habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam",
+      "Email" : "bstanleyo@sakura.ne.jp",
+      "FirstName" : "Billy",
+      "LastName" : "Stanley",
+      "Organization" : "Oyoba",
+      "Phone" : "(365) 574-9849",
+      "State" : "PA",
+      "Status" : "Complete",
+      "Subject" : "tempus semper",
+      "ZipCode" : "17605"
+    },
+    "-JobOebKqQe1jaDWlS39" : {
+      "Address1" : "",
+      "Address2" : "",
+      "AssignedTo" : "hsimpson@test.com",
+      "AssignedToName" : "Homer Simpson",
+      "City" : "",
+      "Created" : "2015-05-06T04:05:49.260Z",
+      "DateAdded" : "Tue May 05 2015 21:05:49 GMT-0700 (PDT)",
+      "Description" : "aabb",
+      "Email" : "aa@bb.com",
+      "FirstName" : "AAA",
+      "LastName" : "BBB",
+      "Notes" : "test",
+      "Organization" : "",
+      "Phone" : "",
+      "PhoneExtension" : "",
+      "State" : "",
+      "Status" : "Assigned",
+      "Subject" : "",
+      "SubjectOther" : "",
+      "ZipCode" : ""
+    }
+  },
+  "SEO" : {
+    "Default" : {
+      "Author" : "John Livingston - johnlivingston.io",
+      "Description" : "Full stack solution with Node, Express, Angular, and Firebase",
+      "ImageDataUri" : "data:image/png;base64,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",
+      "ImageDataUriFileName" : "apple-touch-icon-152x152.png",
+      "Keywords" : "Angular, Express, Node, Firebase, SEO, Jade",
+      "SiteName" : "JL Boilerplate",
+      "TabTitle" : "Default",
+      "Title" : "JL Boilerplate",
+      "Url" : "https://jl-boilerplate.herokuapp.com"
+    }
+  },
+  "Security" : {
+    "Users" : {
+      "simplelogin:2" : {
+        "Email" : "mburns@test.com",
+        "FirstName" : "Montgomery",
+        "LastName" : "Burns",
+        "Roles" : {
+          "Admin" : true
+        }
+      },
+      "simplelogin:3" : {
+        "Email" : "hsimpson@test.com",
+        "FirstName" : "Homer",
+        "LastName" : "Simpson",
+        "Roles" : {
+          "Editor" : true
+        }
+      },
+      "simplelogin:4" : {
+        "Email" : "ccarlson@test.com",
+        "FirstName" : "Carl",
+        "LastName" : "Carlson",
+        "Roles" : {
+          "Editor" : true
+        }
+      }
+    }
+  },
+  "Settings" : {
+    "Content" : {
+      "English" : {
+        "Strings" : {
+          "Admin" : {
+            "Items" : {
+              "0" : {
+                "Name" : "Title",
+                "Value" : "Admin"
+              },
+              "2" : {
+                "Name" : "PageSettings",
+                "Value" : "Page Settings"
+              },
+              "3" : {
+                "Name" : "Settings",
+                "Value" : "Settings"
+              },
+              "-JoAprSPZSsDjFciExkG" : {
+                "Name" : "AddPageContent",
+                "Value" : "Add Page Content"
+              },
+              "-JoApuN0OGOQ6vUvyPsR" : {
+                "Name" : "Name",
+                "Value" : "Name"
+              },
+              "-JoApvrfQlq5HGVv44jE" : {
+                "Name" : "Value",
+                "Value" : "Value"
+              },
+              "-JoApxed4UEUe8L2Sb69" : {
+                "Name" : "Page",
+                "Value" : "Page"
+              },
+              "-JoAq4yHOYHI_Gew12-l" : {
+                "Name" : "Add",
+                "Value" : "Add"
+              },
+              "-JoAq8y0epWpvEEX0OMk" : {
+                "Name" : "SelectPage",
+                "Value" : "Select Page"
+              },
+              "-JoBRhrdJQRfrvxyP5ku" : {
+                "Name" : "Status",
+                "Value" : "Status"
+              },
+              "-JoBRjZz6xNQjP5OkJM8" : {
+                "Name" : "FirstName",
+                "Value" : "First Name"
+              },
+              "-JoBRlZgU5renfiUzuZP" : {
+                "Name" : "LastName",
+                "Value" : "Last Name"
+              },
+              "-JoBRnRE87sIPydHdweT" : {
+                "Name" : "Email",
+                "Value" : "Email"
+              },
+              "-JoBRpT85TSQVE2vvkhP" : {
+                "Name" : "Phone",
+                "Value" : "Phone"
+              },
+              "-JoBSlXR8Q8-e9zvU88C" : {
+                "Name" : "FullName",
+                "Value" : "Full Name"
+              },
+              "-JoBTQITz9obt6yTeMuY" : {
+                "Name" : "Created",
+                "Value" : "Created"
+              },
+              "-JoBTTlFBUxgZMGcp4il" : {
+                "Name" : "AssignedTo",
+                "Value" : "Assigned To"
+              },
+              "-JoBYMk2EppHFo7-QzBX" : {
+                "Name" : "Save",
+                "Value" : "Save"
+              },
+              "-JoBYOajWnBbuSZNaX9g" : {
+                "Name" : "Close",
+                "Value" : "Close"
+              },
+              "-JoFLue3uxEjvTPjf6SI" : {
+                "Name" : "Notes",
+                "Value" : "Notes"
+              },
+              "-JoFS7kFN6rgwLX9VyU5" : {
+                "Name" : "SelectStatus",
+                "Value" : "--Select Status--"
+              },
+              "-JoFSBv8Zf3Lo5nwp3UH" : {
+                "Name" : "SelectUser",
+                "Value" : "--Select User--"
+              },
+              "-JoW6HvlCt_EY1ZvSrPL" : {
+                "Name" : "NoRecords1",
+                "Value" : "There are currently no"
+              },
+              "-JoW6KSQvN8DeY5F0AbD" : {
+                "Name" : "NoRecords2",
+                "Value" : "records."
+              },
+              "-JoW710FUN8vm_Lwk7sl" : {
+                "Name" : "Edit",
+                "Value" : "Edit"
+              },
+              "-JoW7wC4vj0r1OCWVb4e" : {
+                "Name" : "Issues",
+                "Value" : "Issues"
+              },
+              "-JoW81wBAk_JLqEzV6bw" : {
+                "Name" : "MyIssues",
+                "Value" : "My Issues"
+              },
+              "-JoWBk7LJ5xhmPtNDAcb" : {
+                "Name" : "CreatedBy",
+                "Value" : "Created By"
+              },
+              "-JoWN0g_B3suUYCvGCKI" : {
+                "Name" : "SettingsTitle",
+                "Value" : "Used for creating dummy issue data."
+              },
+              "-JoWNSfp_8sGs7ZD9a5n" : {
+                "Name" : "CreateDummyIssues",
+                "Value" : "Create Dummy Issues"
+              },
+              "-JoWOWa_1S_gLPmw2Xd7" : {
+                "Name" : "Description",
+                "Value" : "Description"
+              },
+              "-JoWcyOoETH34-qW2RY9" : {
+                "Name" : "SEO",
+                "Value" : "SEO"
+              },
+              "-JoWeIq1ATtWyuy2Z-Zm" : {
+                "Name" : "Keywords",
+                "Value" : "Keywords"
+              },
+              "-JoWeXl4PAOBkdcCbs6n" : {
+                "Name" : "Browse",
+                "Value" : "Browse"
+              },
+              "-JoWeeLa4B4QFGDvdlIK" : {
+                "Name" : "UpdateImage",
+                "Value" : "Update Image"
+              },
+              "-JoWeg5qiSz-77fRnIh6" : {
+                "Name" : "Loading",
+                "Value" : "Loading..."
+              }
+            },
+            "Title" : "Admin"
+          },
+          "Globals" : {
+            "Items" : [ {
+              "Name" : "Title",
+              "Value" : "JL Boilerplate"
+            } ],
+            "Title" : "Globals"
+          },
+          "Home" : {
+            "Items" : {
+              "0" : {
+                "Name" : "Title",
+                "Value" : "Home"
+              },
+              "-JoWRA1haEELAWOEpIux" : {
+                "Name" : "Technologies",
+                "Value" : "Technologies"
+              },
+              "-JoWRPmQ90ub125k6vhc" : {
+                "Name" : "TechnologyBullets",
+                "Value" : "<ul><li>Node</li><li>Express</li><li>Jade</li><li>Angular</li><li>Firebase</li><ul>"
+              },
+              "-JoWS1FwDV_SHL89USr8" : {
+                "Name" : "SubTitle",
+                "Value" : "This site demonstrates the following:"
+              },
+              "-JoWS2inrzJh25tVhsvJ" : {
+                "Name" : "Features",
+                "Value" : "Features"
+              },
+              "-JoWSGU3V1Kq_6bZBWOl" : {
+                "Name" : "FeatureBullets",
+                "Value" : "<ul><li>Responsive Design</li><li>Firebase Integration</li><li>Authentication</li><li>SEO (OpenGraph)</li><li>Basic CRUD operations</li><li>Heroku Deployment</li><li>Content Administration</li></ul>"
+              }
+            },
+            "Title" : "Home"
+          },
+          "Issues" : {
+            "Items" : {
+              "0" : {
+                "Name" : "Title",
+                "Value" : "Add Issue"
+              },
+              "-JoVXfngewfbcDCt0UQk" : {
+                "Name" : "FirstName",
+                "Value" : "First Name"
+              },
+              "-JoVXiDkEuaL_PBePDN-" : {
+                "Name" : "FirstNamePrompt",
+                "Value" : "Enter first name"
+              },
+              "-JoVXln6desHjqoCTYxo" : {
+                "Name" : "LastName",
+                "Value" : "Last Name"
+              },
+              "-JoVXoPnux1tVdwMpQQx" : {
+                "Name" : "LastNamePrompt",
+                "Value" : "Enter last name"
+              },
+              "-JoVXqH6JkHAE_SX3rZT" : {
+                "Name" : "Email",
+                "Value" : "Email"
+              },
+              "-JoVXseN2UMyCU1ksff0" : {
+                "Name" : "EmailPrompt",
+                "Value" : "Enter email"
+              },
+              "-JoVXugQkGVzGRPpaNIJ" : {
+                "Name" : "Description",
+                "Value" : "Description"
+              },
+              "-JoVXyG02caQ9Q1lM6DD" : {
+                "Name" : "DescriptionPrompt",
+                "Value" : "Enter description"
+              },
+              "-JoVY58VLatr3sWnLhLd" : {
+                "Name" : "Submit",
+                "Value" : "Submit"
+              },
+              "-JoVYBVpGPQ9SRdtXWiA" : {
+                "Name" : "Clear",
+                "Value" : "Clear"
+              },
+              "-JoVYF8L_TgUIKGaHWh1" : {
+                "Name" : "Required",
+                "Value" : "All fields are required"
+              },
+              "-JoVYb4j9NnIlVyje_zF" : {
+                "Name" : "SubTitle",
+                "Value" : "Your issue will be assigned to one of our team members and you will be contacted by email."
+              },
+              "-JoVk6Mn5LYEICn6bkWv" : {
+                "Name" : "CreateNew",
+                "Value" : "Create New"
+              },
+              "-JoVkBUY9XfSAXkMujFC" : {
+                "Name" : "SubmittedCongratulations",
+                "Value" : "Congratulations"
+              },
+              "-JoVkSwozPoRZXFqKazR" : {
+                "Name" : "SubmittedDescription",
+                "Value" : "Your issue has been created. We will be notifying you by email."
+              }
+            },
+            "Title" : "Issues"
+          },
+          "Login" : {
+            "Items" : {
+              "0" : {
+                "Name" : "Email",
+                "Value" : "Email"
+              },
+              "-JoB6h6PXgFpwlZ0xNrD" : {
+                "Name" : "EmailPrompt",
+                "Value" : "Enter email"
+              },
+              "-JoB6jdfUVtMlA31cYvH" : {
+                "Name" : "Login",
+                "Value" : "Login"
+              },
+              "-JoB6lrMH2WJydBzwwrh" : {
+                "Name" : "Password",
+                "Value" : "Password"
+              },
+              "-JoB6o9kNM0kzodiZIy_" : {
+                "Name" : "PasswordPrompt",
+                "Value" : "Enter password"
+              },
+              "-JoB6r0MPPTXb2T4lBWB" : {
+                "Name" : "RememberMe",
+                "Value" : "Remember Me"
+              }
+            },
+            "Title" : "Login"
+          }
+        }
+      }
+    }
+  }
+}

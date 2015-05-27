@@ -13,8 +13,11 @@
     "express": "^4.9.3",
     "firebase": "^2.2.4",
     "jade": "^1.9.2",
+    "mongodb": "^2.0.33",
     "morgan": "^1.1.1",
-    "serve-favicon": "^2.0.1"
+    "q": "^1.4.1",
+    "serve-favicon": "^2.0.1",
+    "tedious": "^1.11.0"
   },
   "devDependencies": {
     "browser-sync": "^1.5.8",

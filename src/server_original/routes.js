@@ -1,9 +1,9 @@
 'use strict';
 var router = require('express').Router();
-var four0four = require('./utils/404')();
+var four0four = require('../../utils/404')();
 /* jshint -W079 */
 var Firebase = require('firebase');
-var constants = require('./constants')();
+var config = require('./config')();
 
 var userConfig = {
     usersPath: 'Security/Users',
@@ -18,7 +18,7 @@ function activate() {
 activate();
 
 function userGet(request, response) {
-    var firebase = new Firebase(constants.firebaseUrl);
+    var firebase = new Firebase(config.todoFirebaseUrl);
     var userId = request.params.id;
 
     firebase.child(userConfig.usersPath + '/' + userId).once('value', success, fail);

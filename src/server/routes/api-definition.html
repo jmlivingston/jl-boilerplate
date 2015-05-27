@@ -1,0 +1,179 @@
+<html>
+<head>
+    <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css' />
+</head>
+<style>
+    table tr td:first-child {
+        width: 250px;
+    }
+</style>
+
+<body>
+    <div class='container'>
+        <h1>REST API Definitions</h1>
+        <hr />
+        <p>Note: Depending on the data source, the name of the ID (ID, id, _id, etc.) may be different. Client side code needs to be aware of the datasource and handle accordingly. We could do data tranformations, but in many cases this can cause performance problems.</p>
+        <h2>
+            ROUTE NAMES
+        </h2>
+        <ul>
+            <li>issues-firebase</li>
+            <li>issues-json</li>
+            <li>issues-mongo</li>
+            <li>issues-sql</li>
+        </ul>
+        <hr />
+        <h2>ROUTES</h2>
+        <h3>GET</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Path
+                    </th>
+                    <th>
+                        Example Return Values
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href='/api/issues-firebase'>/api/issues-firebase</a>
+                        <br />
+                        <a href='/api/issues-json'>/api/issues-json</a>
+                        <br />
+                        <a href='/api/issues-mongo'>/api/issues-mongo</a>
+                        <br />
+                        <a href='/api/issues-sql'>/api/issues-sql</a>
+                    </td>
+                    <td>
+                        <pre>
+{ items: [ { _id: 1, FirstName: 'Bill' }, { _id: 2, FirstName: 'Bob' } ] }
+</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href='/api/issues-firebase/:id'>/api/issues-firebase/:id</a>
+                        <br />
+                        <a href='/api/issues-json/:id'>/api/issues-json/:id</a>
+                        <br />
+                        <a href='/api/issues-mongo/:id'>/api/issues-mongo/:id</a>
+                        <br />
+                        <a href='/api/issues-sql/:id'>/api/issues-sql/:id</a>
+                    </td>
+                    <td>
+<pre>
+{ item: { _id: 1, FirstName: 'Bill' } }
+</pre>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <hr />
+        <h3>POST</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Path
+                    </th>
+                    <th>
+                        Example Return Values
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href='/api/issues-firebase'>/api/issues-firebase</a>
+                        <br />
+                        <a href='/api/issues-json'>/api/issues-json</a>
+                        <br />
+                        <a href='/api/issues-mongo'>/api/issues-mongo</a>
+                        <br />
+                        <a href='/api/issues-sql'>/api/issues-sql</a>
+                    </td>
+                    <td>
+<pre>
+{ id: 1 }
+
+//or
+
+{ ids: [ 1, 2 ] }
+</pre>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <hr />
+        <h3>PUT</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Path
+                    </th>
+                    <th>
+                        Example Return Values
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href='/api/issues-firebase/:id'>/api/issues-firebase/:id</a>
+                        <br />
+                        <a href='/api/issues-json/:id'>/api/issues-json/:id</a>
+                        <br />
+                        <a href='/api/issues-mongo/:id'>/api/issues-mongo/:id</a>
+                        <br />
+                        <a href='/api/issues-sql/:id'>/api/issues-sql/:id</a>
+                    </td>
+                    <td>
+<pre>
+{ id: 1, success: true }
+</pre>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <hr />
+        <h3>DELETE</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Path
+                    </th>
+                    <th>
+                        Example Return Values
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href='/api/routename/:id'>/api/routename/:id</a>
+                    </td>
+                    <td>
+<pre>
+{ id: 1, success: true }
+</pre>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <hr />
+        <h2>ERRORS</h2>
+        <p>
+            If there is any error, it will be returned in an error property. On the front end, always check this first.
+        </p>
+<pre>
+{ error: 'there was an error' }
+</pre>
+
+    </div>
+</body>
+
+</html>

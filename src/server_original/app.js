@@ -1,33 +1,8 @@
-// var express = require('express');
-// var bodyParser = require('body-parser');
-// var app = express();
-// var morgan = require('morgan');
-// var routes = require('./routes/main');
-// var config = require('./config.js')();
-// var logger = require('./utils/logger.js');
-
-// app.use(morgan('dev'));
-// app.use(bodyParser.urlencoded({
-//     extended: true
-// }));
-// app.use(bodyParser.json());
-
-// var port = process.env.PORT || config.port;
-
-// routes.init(app);
-
-// app.listen(port);
-
-// logger.log('Listening on port ' + port);
-
 /*jshint node:true*/
-
 'use strict';
 var express = require('express');
-var routes = require('./routes/main');
-
 var app = express();
-//var config = require('./config')();
+var constants = require('./constants')();
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -47,8 +22,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(logger('dev'));
 
-//OLD app.use('/api', require('./routes'));
-routes.init(app);
+app.use('/api', require('./routes'));
 
 console.log('About to crank up node');
 console.log('PORT=' + port);
@@ -125,4 +99,3 @@ app.listen(port, function () {
         '\n__dirname = ' + __dirname +
         '\nprocess.cwd = ' + process.cwd());
 });
-

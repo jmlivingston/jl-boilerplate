@@ -1,0 +1,10 @@
+doctype
+html(ng-app='app')
+    head
+        //- SEO data compiled on server side
+        include seo.jade
+        //- Style references optimized on client side
+        include ../../client/head.html
+    body
+        //- Content and script references optimized on client side
+        include ../../client/index.html
