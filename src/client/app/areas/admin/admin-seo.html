@@ -11,7 +11,10 @@
         <div class="row">
             <div class="col-xs-3">
                 <label>{{pageStrings.Image}}</label>
-                <img ng-src="{{vm.seoItem.ImageDataUri}}" class="img-thumbnail img-fullwidth" ng-show="vm.seoItem.ImageDataUriFileName" /> {{vm.seoItem.ImageDataUriFileName || 'N/A'}}
+                <br />
+                <img ng-src="{{vm.seoItem.ImageDataUri}}" class="img-thumbnail img-fullwidth" ng-show="vm.seoItem.ImageDataUri" />
+                <br />
+                {{vm.seoItem.ImageDataUriFileName || 'No File Name'}}
                 <br />
                 <span class="btn btn-default btn-file">
                 {{pageStrings.Browse}}<input id="update-seo-image" type="file" />

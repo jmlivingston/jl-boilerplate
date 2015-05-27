@@ -1,4 +1,5 @@
 var express = require('express');
+/* jshint -W079 */
 var Firebase = require('firebase');
 var router = express.Router();
 var four0four = require('../utils/404.js')();
@@ -28,7 +29,7 @@ function init(app) {
     app.use(config.restRouteBaseUrl, router);
 
     //USER INFO
-    app.get('/user/:id', userConfig.get);
+    app.get('/api/user/:id', userConfig.get);
 
     config.restRoutes.forEach(function (route) {
         restRoute.config({

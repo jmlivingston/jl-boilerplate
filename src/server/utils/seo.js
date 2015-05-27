@@ -13,7 +13,7 @@ module.exports = function () {
         var readyPromise = q.defer();
 
         var firebase = new Firebase(config.todoFirebaseUrl);
-        firebase.child('/SEO/Default').once('value', success, fail);
+        firebase.child('/Settings/SEO/Default').once('value', success, fail);
 
         function success(data) {
             var seoDefault = {
