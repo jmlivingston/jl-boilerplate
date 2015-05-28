@@ -55,13 +55,14 @@
             });
         };
 
-        vm.put = function (collectionName, id, putItem) {
+        vm.put = function (collectionName, item) {
             apiService.put({
                 collectionName: collectionName,
-                id: id,
-                data: postItem
+                id: item.Id,
+                data: item
             }).then(function (data) {
-                vm[collectionName + '-post-item'] = data;
+                vm[collectionName + '-put-item'] = data;
+                vm[collectionName + 'putItem'] = {};
                 activate();
             });
         };
@@ -81,7 +82,8 @@
                 delete data.promiseValue;
                 vm[collectionName + 'deleteId'] = '';
                 vm[collectionName + 'getId'] = '';
-                vm[collectionName + 'putId'] = '';
+                vm[collectionName + 'putItem'] = {};
+                vm[collectionName + 'postItem'] = {};
                 vm[collectionName + '-delete-item'] = data;
             });
         };
@@ -96,6 +98,7 @@
                 }).then(function (data) {
                     vm[data.promiseValue.collectionName + '-get-items'] = data.items;
                     vm[data.promiseValue.collectionName + 'postItem'] = getDummyName();
+                    vm[data.promiseValue.collectionName + 'putItem'] = {};
                 });
             }
         }
@@ -104,8 +107,8 @@
             var date = new Date();
             var milliseconds = date.getMilliseconds();
             return {
-                FirstName: 'John' + milliseconds,
-                LastName: 'Doe' + milliseconds
+                FirstName: 'FirstTest' + milliseconds,
+                LastName: 'LastTest' + milliseconds
             };
         }
 

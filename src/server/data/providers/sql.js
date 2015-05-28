@@ -140,7 +140,7 @@ function put(tableName, item) {
     try {
         var sql = 'update ' + tableName + ' set ';
         var set = Object.keys(item).map(function (key) {
-            if (key !== 'Id') {
+            if (key.toLowerCase() !== 'id') {
                 return key + ' = \'' + item[key] + '\',';
             } else {
                 return '';
@@ -148,6 +148,9 @@ function put(tableName, item) {
         }).join('');
         sql += set.substr(0, set.length - 1);
         sql += ' where Id = ' + item.Id;
+
+        console.log('SQL - ' + sql);
+
         connect().then(function (connectVal) {
             executeStatement(connectVal.connection, sql).then(function () {
                 deferred.resolve(new RestContract.PutById({

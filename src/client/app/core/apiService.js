@@ -3,9 +3,9 @@
     angular
         .module('app.core')
         .factory('apiService', apiService);
-    apiService.$inject = ['$http', '$resource', 'logger', '$q'];
+    apiService.$inject = ['$http', 'logger', '$q'];
     /* @ngInject */
-    function apiService($http, $resource, logger, $q) {
+    function apiService($http, logger, $q) {
         var service = {
             get: get,
             post: post,
@@ -16,62 +16,62 @@
 
         function get(options) {
             var deferred = $q.defer();
-            if (options.id) {
-                var getApiById = $resource('/api/' + options.collectionName + '/:id', {
-                    id: '@id'
-                });
-                getApiById.get({
-                    id: options.id
-                }).$promise.then(function (data) {
-                    data.promiseValue = options.promiseValue;
-                    deferred.resolve(data);
-                });
-            } else {
-                var getApi = $resource('/api/' + options.collectionName);
-                getApi.get().$promise.then(function (data) {
-                    data.promiseValue = options.promiseValue;
-                    deferred.resolve(data);
-                });
-            }
+            var req = {
+                method: 'GET',
+                url: '/api/' + options.collectionName + '/' + (options.id ? options.id : '')
+            };
+            $http(req).success(function (data, status) {
+                data.promiseValue = options.promiseValue;
+                deferred.resolve(data);
+            }).error(function (data, status) {
+                deferred.reject();
+            });
             return deferred.promise;
         }
 
         function post(options) {
             var deferred = $q.defer();
-            var resource = $resource('/api/' + options.collectionName + '/:id', {
-                id: '@id'
-            });
-            var getApiById = new resource(options.data);
-            getApiById.$save().then(function (data) {
+            var req = {
+                method: 'POST',
+                url: '/api/' + options.collectionName,
+                data: options.data
+            };
+            $http(req).success(function (data, status) {
+                data.promiseValue = options.promiseValue;
                 deferred.resolve(data);
+            }).error(function (data, status) {
+                deferred.reject();
             });
             return deferred.promise;
         }
 
         function put(options) {
             var deferred = $q.defer();
-            var resource = $resource('/api/' + options.collectionName + '/:id', {
-                id: '@id'
-            });
-            var getApiById = new resource(options.data);
-            getApiById.$update({
-                id: options.id
-            }, options.data).then(function (data) {
+            var req = {
+                method: 'PUT',
+                url: '/api/' + options.collectionName + '/' + (options.id ? options.id : ''),
+                data: options.data
+            };
+            $http(req).success(function (data, status) {
+                data.promiseValue = options.promiseValue;
                 deferred.resolve(data);
+            }).error(function (data, status) {
+                deferred.reject();
             });
             return deferred.promise;
         }
 
         function deleteItem(options) {
             var deferred = $q.defer();
-            var deleteApiById = $resource('/api/' + options.collectionName + '/:id', {
-                id: '@id'
-            });
-            deleteApiById.delete({
-                id: options.id
-            }).$promise.then(function (data) {
+            var req = {
+                method: 'DELETE',
+                url: '/api/' + options.collectionName + '/' + options.id
+            };
+            $http(req).success(function (data, status) {
                 data.promiseValue = options.promiseValue;
                 deferred.resolve(data);
+            }).error(function (data, status) {
+                deferred.reject();
             });
             return deferred.promise;
         }

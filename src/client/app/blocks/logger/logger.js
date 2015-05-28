@@ -36,7 +36,7 @@
 
         function success(message, data, title) {
             //toastr.success(message, title);
-            $log.info('Success: ' + message, data);
+            //$log.info('Success: ' + message, data);
         }
 
         function warning(message, data, title) {
