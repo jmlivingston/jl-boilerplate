@@ -46,11 +46,24 @@
         };
 
         vm.post = function (collectionName, postItem) {
-
+            apiService.post({
+                collectionName: collectionName,
+                data: postItem
+            }).then(function (data) {
+                vm[collectionName + '-post-item'] = data;
+                activate();
+            });
         };
 
         vm.put = function (collectionName, id, putItem) {
-
+            apiService.put({
+                collectionName: collectionName,
+                id: id,
+                data: postItem
+            }).then(function (data) {
+                vm[collectionName + '-post-item'] = data;
+                activate();
+            });
         };
 
         vm.delete = function (collectionName, id) {
@@ -62,7 +75,7 @@
                 }
             }).then(function (data) {
                 var collectionName = data.promiseValue.collectionName;
-                vm[collectionName + '-get-items'] = vm[collectionName + '-get-items'].filter(function(val) {
+                vm[collectionName + '-get-items'] = vm[collectionName + '-get-items'].filter(function (val) {
                     return val.Id !== id;
                 });
                 delete data.promiseValue;
@@ -82,8 +95,18 @@
                     }
                 }).then(function (data) {
                     vm[data.promiseValue.collectionName + '-get-items'] = data.items;
+                    vm[data.promiseValue.collectionName + 'postItem'] = getDummyName();
                 });
             }
+        }
+
+        function getDummyName(item) {
+            var date = new Date();
+            var milliseconds = date.getMilliseconds();
+            return {
+                FirstName: 'John' + milliseconds,
+                LastName: 'Doe' + milliseconds
+            };
         }
 
         activate();

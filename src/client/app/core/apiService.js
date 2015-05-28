@@ -36,12 +36,30 @@
             return deferred.promise;
         }
 
-        function post() {
-            return null;
+        function post(options) {
+            var deferred = $q.defer();
+            var resource = $resource('/api/' + options.collectionName + '/:id', {
+                id: '@id'
+            });
+            var getApiById = new resource(options.data);
+            getApiById.$save().then(function (data) {
+                deferred.resolve(data);
+            });
+            return deferred.promise;
         }
 
-        function put() {
-            return null;
+        function put(options) {
+            var deferred = $q.defer();
+            var resource = $resource('/api/' + options.collectionName + '/:id', {
+                id: '@id'
+            });
+            var getApiById = new resource(options.data);
+            getApiById.$update({
+                id: options.id
+            }, options.data).then(function (data) {
+                deferred.resolve(data);
+            });
+            return deferred.promise;
         }
 
         function deleteItem(options) {
