@@ -1,0 +1,61 @@
+<div class="container" id="apidemo-container">
+    <h1>{{pageStrings.Title}}</h1>
+    <div role="tabpanel">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" ng-class="{ active: $first }" ng-repeat="dataSource in vm.dataSources">
+                <a data-target="#{{dataSource.collectionName}}" aria-controls="{{dataSource.collectionName}}" role="tab" data-toggle="tab">
+                {{dataSource.title}}
+            </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane" ng-class="{ active: $first }" id="{{dataSource.collectionName}}" ng-repeat="dataSource in vm.dataSources">
+                <br />
+                <p ng-show="dataSource.description">{{dataSource.description}}</p>
+                <!--GET-->
+                <button class="btn btn-success" ng-click="vm.get(dataSource.collectionName)">GET</button>
+                <br />
+                <br />
+<pre class="pre-get">{{vm[dataSource.collectionName + '-get-items']|json}}</pre>
+                <br />
+                <!--GET BY ID-->
+                <div class="form-inline">
+                    <button class="btn btn-success" ng-click="vm.get(dataSource.collectionName, vm[dataSource.collectionName + 'getId'])">GET (By ID)</button>
+                    <select class="form-control" ng-model="vm[dataSource.collectionName + 'getId']" ng-options="item.Id as item.Id for item in vm[dataSource.collectionName + '-get-items']">
+                        <option value="">Select ID</option>
+                    </select>
+                </div>
+                <br />
+<pre>{{vm[dataSource.collectionName + '-get-item']||'N/A'}}</pre>
+                <br />
+                <!--POST-->
+                <button class="btn btn-warning" ng-click="vm.post(dataSource.collectionName)">POST</button>
+                <br />
+                <br />
+<pre>{{vm[dataSource.collectionName + '-post-item']||'N/A'}}</pre>
+                <br />
+                <!--PUT-->
+                <div class="form-inline">
+                    <button class="btn btn-primary" ng-click="vm.put(dataSource.collectionName, vm[dataSource.collectionName + 'putId'])">PUT</button>
+                    <select class="form-control" ng-model="vm[dataSource.collectionName + 'putId']" ng-options="item.Id as item.Id for item in vm[dataSource.collectionName + '-get-items']">
+                        <option value="">Select ID</option>
+                    </select>
+                </div>
+                <br />
+                <br />
+<pre>{{vm[dataSource.collectionName + '-put-item']||'N/A'}}</pre>
+                <br />
+                <!--DELETE-->
+                <div class="form-inline">
+                    <button class="btn btn-danger" ng-click="vm.delete(dataSource.collectionName, vm[dataSource.collectionName + 'deleteId'])">DELETE</button>
+                    <select class="form-control" ng-model="vm[dataSource.collectionName + 'deleteId']" ng-options="item.Id as item.Id for item in vm[dataSource.collectionName + '-get-items']">
+                        <option value="">Select ID</option>
+                    </select>
+                </div>
+                <br />
+                <br />
+<pre>{{vm[dataSource.collectionName + '-delete-item']||'N/A'}}</pre>
+            </div>
+        </div>
+    </div>
+</div>

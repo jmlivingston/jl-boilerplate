@@ -35,6 +35,13 @@
                 controllerAs: 'vm',
                 authRequired: true
             })
+            .whenAuthenticated('/apidemo', {
+                templateUrl: 'app/areas/apidemo/apidemo.html',
+                controller: 'ApiDemoController',
+                firebaseKey: 'ApiDemo',
+                title: 'API Demo',
+                controllerAs: 'vm'
+            })
             .when('/login', {
                 templateUrl: 'app/areas/account/login.html',
                 controller: 'LoginController',

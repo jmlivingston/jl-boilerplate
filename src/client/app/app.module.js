@@ -8,6 +8,7 @@
         'app.home',
         'app.issues',
         'app.account',
+        'app.apidemo',
         'app.layout'
     ]);
 })();
