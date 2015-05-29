@@ -71,12 +71,12 @@ function executeStatement(connection, sql, options) {
     return deferred.promise;
 }
 
-function get(tableName, id) {
+function get(restRoute, id) {
     var deferred = q.defer();
     try {
-        var sql = 'select * from ' + tableName;
+        var sql = 'select * from ' + restRoute.dataName;
         if (id) {
-            sql += ' where id = ' + id;
+            sql += ' where ' + restRoute.identity + ' = ' + id;
         }
         connect().then(function (val) {
             executeStatement(val.connection, sql).then(function (val) {
@@ -93,9 +93,9 @@ function get(tableName, id) {
     return deferred.promise;
 }
 
-function post(tableName, newItem, index) {
+function post(restRoute, newItem, index) {
     if (Array.isArray(newItem)) {
-        return postBatch(tableName, newItem);
+        return postBatch(restRoute.dataName, newItem);
     } else {
         var deferred = q.defer();
         try {
@@ -103,11 +103,11 @@ function post(tableName, newItem, index) {
             var vals = Object.keys(newItem).map(function (key) {
                 return '\'' + newItem[key] + '\'';
             });
-            var sql = 'insert into ' + tableName + ' (' + columns.join(',') + ') ';
-            sql += 'values (' + vals.join(',') + '); select @@identity AS \'Id\'';
+            var sql = 'insert into ' + restRoute.dataName + ' (' + columns.join(',') + ') ';
+            sql += 'values (' + vals.join(',') + '); select @@identity AS \'' + restRoute.identity + '\'';
             connect(index).then(function (connectVal) {
                 executeStatement(connectVal.connection, sql, connectVal.options).then(function (execVal) {
-                    deferred.resolve(new RestContract.PostById(execVal.data[0].Id));
+                    deferred.resolve(new RestContract.PostById(execVal.data[0][restRoute.identity]));
                 });
             });
         } catch (error) {
@@ -118,10 +118,10 @@ function post(tableName, newItem, index) {
 }
 
 //Note: Tedious has a bulkLoad function, but unfortunately it won't return IDs
-function postBatch(tableName, items) {
+function postBatch(restRoute, items) {
     var deferred = q.defer();
     var promises = items.map(function (item, index) {
-        return service.post(tableName, item, index);
+        return service.post(restRoute.dataName, item, index);
     });
     //TODO: Potential race condition bug here. Need to ensure the Ids are returned in the order of the items posted.
     q.all(promises).then(function (results) {
@@ -135,24 +135,24 @@ function postBatch(tableName, items) {
     return deferred.promise;
 }
 
-function put(tableName, item) {
+function put(restRoute, item) {
     var deferred = q.defer();
     try {
-        var sql = 'update ' + tableName + ' set ';
+        var sql = 'update ' + restRoute.dataName + ' set ';
         var set = Object.keys(item).map(function (key) {
-            if (key.toLowerCase() !== 'id') {
+            if (key.toLowerCase() !== restRoute.identity) {
                 return key + ' = \'' + item[key] + '\', ';
             } else {
                 return '';
             }
         }).join('');
         sql += set.substr(0, set.length - 2);
-        sql += ' where Id = ' + item.ID;
+        sql += ' where ' + restRoute.identity + ' = ' + item[restRoute.identity];
         console.log('sql - ' + sql);
         connect().then(function (connectVal) {
             executeStatement(connectVal.connection, sql).then(function () {
                 deferred.resolve(new RestContract.PutById({
-                    id: item.ID,
+                    id: item[restRoute.identity],
                     success: true
                 }));
             });
@@ -163,11 +163,11 @@ function put(tableName, item) {
     return deferred.promise;
 }
 
-function deleteItem(tableName, id) {
+function deleteItem(restRoute, id) {
     var deferred = q.defer();
     try {
-        var sql = 'delete ' + tableName;
-        sql += ' where Id = ' + id;
+        var sql = 'delete ' + restRoute.dataName;
+        sql += ' where ' + restRoute.identity + ' = ' + id;
         connect().then(function (connectVal) {
             executeStatement(connectVal.connection, sql).then(function () {
                 deferred.resolve(new RestContract.DeleteById({

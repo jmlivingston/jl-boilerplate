@@ -11,7 +11,7 @@ module.exports = function () {
                 token: process.env.FirebaseToken || 'PLVW4nqTUPRLkv7ZKFRsPMmq0zg4SpKj2AHrYy2q'
             },
             json: {},
-            mongo: {
+            mongodb: {
                 database: process.env.MongoDatabase || 'ds039010.mongolab.com:39010/express-rest',
                 user: process.env.MongoUser || 'jlivingston',
                 password: process.env.MongoPassword || 'Mongo,test0'
@@ -29,25 +29,29 @@ module.exports = function () {
                 path: 'issues-firebase',
                 dataName: 'Issues',
                 provider: 'firebase',
-                identity: 'Id'
+                identity: 'Id', //For Firebase, this is really a placeholder
+                enabled: true
             },
             IssuesJson: {
                 path: 'issues-json',
                 dataName: 'Issues',
                 provider: 'json',
-                identity: 'Id'
+                identity: 'Id',
+                enabled: true
             },
             IssuesMongo: {
-                path: 'issues-mongo',
+                path: 'issues-mongodb',
                 dataName: 'Issues',
-                provider: 'mongo',
-                identity: '_id'
+                provider: 'mongodb',
+                identity: '_id', //For MongoDB, this will always be _id
+                enabled: true
             },
             IssuesSql: {
                 path: 'issues-sql',
                 dataName: 'Issues',
                 provider: 'sql',
-                identity: 'ID'
+                identity: 'ID',
+                enabled: true
             }
         }
     };

@@ -6,12 +6,13 @@ var service = {
 
 var items = [];
 
-function objToArray(obj) {
+function objToArray(obj, identity) {
+    console.log('id - ' + identity);
     items = [];
     //TODO: Really hate this, but trying to keep Firebase consistent with other data sources which have an Id in the record
     var deferred = q.defer();
     var promises = Object.keys(obj).map(function (value, index) {
-        return getObj(value, obj[value]);
+        return getObj(value, obj[value], identity);
     });
     q.all(promises).then(function () {
         deferred.resolve(items);
@@ -21,9 +22,9 @@ function objToArray(obj) {
     return deferred.promise;
 }
 
-function getObj(prop, obj) {
+function getObj(prop, obj, identity) {
     var deferred = q.defer();
-    obj.Id = prop;
+    obj[identity] = prop;
     items.push(obj);
     deferred.resolve();
     return deferred.promise;

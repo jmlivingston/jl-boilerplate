@@ -1,3 +1,4 @@
+//TODO: These queries seem pretty damn slow for MongoDB. Need to see where we can optimize
 var q = require('q');
 var mongodb = require('mongodb');
 var config = require('../../../config.js')();
@@ -11,9 +12,9 @@ var service = {
     delete: deleteItem
 };
 
-function get(collectionName, id) {
+function get(restRoute, id) {
     var deferred = q.defer();
-    getCollection(collectionName).then(function (data) {
+    getCollection(restRoute).then(function (data) {
         try {
             if (data.error) {
                 throw data.error;
@@ -51,15 +52,15 @@ function get(collectionName, id) {
     return deferred.promise;
 }
 
-function getCollection(collectionName) {
+function getCollection(restRoute) {
     var deferred = q.defer();
-    var uri = 'mongodb://' + config.dataProviders.mongo.user + ':' + config.dataProviders.mongo.password + '@' + config.dataProviders.mongo.database;
+    var uri = 'mongodb://' + config.dataProviders.mongodb.user + ':' + config.dataProviders.mongodb.password + '@' + config.dataProviders.mongodb.database;
     mongodb.MongoClient.connect(uri, function (error, db) {
         if (error) {
             logger.log('Error connecting to MongoDB ' + error);
             deferred.resolve(new RestContract.Error(error.toString()));
         } else {
-            var collection = db.collection(collectionName);
+            var collection = db.collection(restRoute.dataName);
             deferred.resolve({
                 collection: collection
             });
@@ -68,9 +69,9 @@ function getCollection(collectionName) {
     return deferred.promise;
 }
 
-function post(collectionName, newItem) {
+function post(restRoute, newItem) {
     var deferred = q.defer();
-    getCollection(collectionName).then(function (data) {
+    getCollection(restRoute).then(function (data) {
         try {
             if (data.error) {
                 throw data.error;
@@ -93,9 +94,9 @@ function post(collectionName, newItem) {
     return deferred.promise;
 }
 
-function put(collectionName, item) {
+function put(restRoute, item) {
     var deferred = q.defer();
-    getCollection(collectionName).then(function (data) {
+    getCollection(restRoute).then(function (data) {
         try {
             if (data.error) {
                 throw data.error;
@@ -125,9 +126,9 @@ function put(collectionName, item) {
     return deferred.promise;
 }
 
-function deleteItem(collectionName, id) {
+function deleteItem(restRoute, id) {
     var deferred = q.defer();
-    getCollection(collectionName).then(function (data) {
+    getCollection(restRoute).then(function (data) {
         try {
             if (data.error) {
                 throw data.error;

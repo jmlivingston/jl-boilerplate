@@ -31,17 +31,17 @@ function init(app) {
     //USER INFO
     app.get('/api/user/:id', userConfig.get);
 
-    app.get('/api/restroutes', function(req, res) {
+    app.get('/api/restroutes', function (req, res) {
         res.json(config.restRoutes);
     });
 
     Object.keys(config.restRoutes).forEach(function (key) {
-        restRoute.config({
-            app: app,
-            path: config.restRouteBaseUrl + '/' + config.restRoutes[key].path,
-            dataName: config.restRoutes[key].dataName,
-            provider: config.restRoutes[key].provider
-        });
+        if (config.restRoutes[key].enabled) {
+            restRoute.config({
+                app: app,
+                restRoute: config.restRoutes[key]
+            });
+        }
     });
     //app.get('/*', four0four.notFoundMiddleware);
 }

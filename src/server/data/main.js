@@ -1,7 +1,7 @@
 var providers = {
     firebase: require('./providers/firebase/provider.firebase.js'),
     json: require('./providers/json/provider.json.js'),
-    mongo: require('./providers/mongodb/provider.mongodb.js'),
+    mongodb: require('./providers/mongodb/provider.mongodb.js'),
     sql: require('./providers/sql/provider.sql.js')
 };
 var logger = require('../utils/logger.js');
@@ -11,27 +11,27 @@ var service = {
     get: get,
     post: post,
     put: put,
-    delete: deleteById
+    delete: deleteItem
 };
 
-function get(dataOptions, id, options) {
-    logger.log('get ' + dataOptions.dataName + ' ' + id);
-    return providers[dataOptions.provider].get(dataOptions.dataName, id, options);
+function get(restRoute, id, options) {
+    logger.log('get ' + restRoute.dataName + ' ' + id);
+    return providers[restRoute.provider].get(restRoute, id, options);
 }
 
-function post(dataOptions, newItem, options) {
-    logger.log('post ' + dataOptions.dataName + ' ' + JSON.stringify(newItem));
-    return providers[dataOptions.provider].post(dataOptions.dataName, newItem, options);
+function post(restRoute, newItem, options) {
+    logger.log('post ' + restRoute.dataName + ' ' + JSON.stringify(newItem));
+    return providers[restRoute.provider].post(restRoute, newItem, options);
 }
 
-function put(dataOptions, item, options) {
-    logger.log('put ' + dataOptions.dataName + ' ' + JSON.stringify(item));
-    return providers[dataOptions.provider].put(dataOptions.dataName, item, options);
+function put(restRoute, item, options) {
+    logger.log('put ' + restRoute.dataName + ' ' + JSON.stringify(item));
+    return providers[restRoute.provider].put(restRoute, item, options);
 }
 
-function deleteById(dataOptions, id, options) {
-    logger.log('delete ' + dataOptions.dataName + ' ' + id);
-    return providers[dataOptions.provider].delete(dataOptions.dataName, id, options);
+function deleteItem(restRoute, id, options) {
+    logger.log('delete ' + restRoute.dataName + ' ' + id);
+    return providers[restRoute.provider].delete(restRoute, id, options);
 }
 
 module.exports = service;

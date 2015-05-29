@@ -90,10 +90,10 @@
                         id: data.items[data.items.length - 1][restRoute.identity],
                         restRoute: restRoute
                     }).then(function (data) {
-                        getItem = data.item;
                         if (data.error) {
                             vm[restRoute.path + 'testAll'] += 'GET (By ID) - Error\r\n';
                         } else {
+                            getItem = data.item;
                             vm[restRoute.path + 'testAll'] += 'GET (id:' + getItem[restRoute.identity] + ')\r\n';
                             apiService.post({
                                 data: getDummyName(),
@@ -132,18 +132,21 @@
 
         function activate() {
             apiService.getRestRoutes().then(function (data) {
-                vm.restRoutes = data;
-                Object.keys(vm.restRoutes).forEach(function (key) {
-                    apiService.get({
-                        restRoute: vm.restRoutes[key],
-                        promiseValue: {
-                            restRoute: vm.restRoutes[key]
-                        }
-                    }).then(function (data) {
-                        vm[data.promiseValue.restRoute.path + '-get-items'] = data.items;
-                        vm[data.promiseValue.restRoute.path + 'postItem'] = getDummyName();
-                        vm[data.promiseValue.restRoute.path + 'putItem'] = {};
-                    });
+                vm.restRoutes = [];
+                Object.keys(data).forEach(function (key) {
+                    if (data[key].enabled) {
+                        vm.restRoutes.push(data[key]);
+                        apiService.get({
+                            restRoute: data[key],
+                            promiseValue: {
+                                restRoute: data[key]
+                            }
+                        }).then(function (data) {
+                            vm[data.promiseValue.restRoute.path + '-get-items'] = data.items;
+                            vm[data.promiseValue.restRoute.path + 'postItem'] = getDummyName();
+                            vm[data.promiseValue.restRoute.path + 'putItem'] = {};
+                        });
+                    }
                 });
             });
         }

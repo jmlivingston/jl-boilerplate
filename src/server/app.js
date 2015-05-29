@@ -45,7 +45,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-app.use(logger('dev'));
+//app.use(logger('dev')); //Comment out to limit logging. Can be pretty verbose
 
 //OLD app.use('/api', require('./routes'));
 routes.init(app);
@@ -75,39 +75,39 @@ app.get('/seoimage.jpg', function (req, res) {
 });
 
 switch (environment) {
-    case 'production':
-        console.log('** PRODUCTION **');
-        app.use(express.static('./client/'));
-        app.use('/app/*', function (req, res, next) {
-            four0four.send404(req, res);
-        });
-        break;
-    case 'qa':
-        console.log('** QA **');
-        app.use(express.static('./client/'));
-        app.use('/bower_components', express.static('./bower_components/'));
-        app.use('/.tmp/', express.static('./.tmp/'));
-        app.use('/src/client/', express.static('./client/'));
-        app.use('/app/*', function (req, res, next) {
-            four0four.send404(req, res);
-        });
-        break;
-    case 'build':
-        console.log('** BUILD **');
-        app.use(express.static('./build/'));
-        app.use('/app/*', function (req, res, next) {
-            four0four.send404(req, res);
-        });
-        break;
-    default:
-        console.log('** DEV **');
-        app.use(express.static('./src/client/'));
-        app.use(express.static('./'));
-        app.use(express.static('./tmp'));
-        app.use('/app/*', function (req, res, next) {
-            four0four.send404(req, res);
-        });
-        break;
+case 'production':
+    console.log('** PRODUCTION **');
+    app.use(express.static('./client/'));
+    app.use('/app/*', function (req, res, next) {
+        four0four.send404(req, res);
+    });
+    break;
+case 'qa':
+    console.log('** QA **');
+    app.use(express.static('./client/'));
+    app.use('/bower_components', express.static('./bower_components/'));
+    app.use('/.tmp/', express.static('./.tmp/'));
+    app.use('/src/client/', express.static('./client/'));
+    app.use('/app/*', function (req, res, next) {
+        four0four.send404(req, res);
+    });
+    break;
+case 'build':
+    console.log('** BUILD **');
+    app.use(express.static('./build/'));
+    app.use('/app/*', function (req, res, next) {
+        four0four.send404(req, res);
+    });
+    break;
+default:
+    console.log('** DEV **');
+    app.use(express.static('./src/client/'));
+    app.use(express.static('./'));
+    app.use(express.static('./tmp'));
+    app.use('/app/*', function (req, res, next) {
+        four0four.send404(req, res);
+    });
+    break;
 }
 
 app.use('/*', function (req, res) {
@@ -125,4 +125,3 @@ app.listen(port, function () {
         '\n__dirname = ' + __dirname +
         '\nprocess.cwd = ' + process.cwd());
 });
-
