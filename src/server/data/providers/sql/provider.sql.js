@@ -74,14 +74,14 @@ function executeStatement(connection, sql, options) {
 function get(tableName, id) {
     var deferred = q.defer();
     try {
-        var sql = 'select *, ID as Id from ' + tableName;
+        var sql = 'select * from ' + tableName;
         if (id) {
             sql += ' where id = ' + id;
         }
         connect().then(function (val) {
             executeStatement(val.connection, sql).then(function (val) {
                 if (id) {
-                    deferred.resolve(new RestContract.GetById(val.data));
+                    deferred.resolve(new RestContract.GetById(val.data[0]));
                 } else {
                     deferred.resolve(new RestContract.Get(val.data));
                 }
@@ -141,20 +141,18 @@ function put(tableName, item) {
         var sql = 'update ' + tableName + ' set ';
         var set = Object.keys(item).map(function (key) {
             if (key.toLowerCase() !== 'id') {
-                return key + ' = \'' + item[key] + '\',';
+                return key + ' = \'' + item[key] + '\', ';
             } else {
                 return '';
             }
         }).join('');
-        sql += set.substr(0, set.length - 1);
+        sql += set.substr(0, set.length - 2);
         sql += ' where Id = ' + item.ID;
-
-        console.log('SQL - ' + sql);
-
+        console.log('sql - ' + sql);
         connect().then(function (connectVal) {
             executeStatement(connectVal.connection, sql).then(function () {
                 deferred.resolve(new RestContract.PutById({
-                    id: item.Id,
+                    id: item.ID,
                     success: true
                 }));
             });

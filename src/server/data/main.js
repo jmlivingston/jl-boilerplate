@@ -1,8 +1,8 @@
 var providers = {
-    json: require('./providers/json/provider.js'),
-    firebase: require('./providers/firebase/provider.js'),
-    sql: require('./providers/sql/provider.js'),
-    mongo: require('./providers/mongo/provider.js')
+    firebase: require('./providers/firebase/provider.firebase.js'),
+    json: require('./providers/json/provider.json.js'),
+    mongo: require('./providers/mongodb/provider.mongodb.js'),
+    sql: require('./providers/sql/provider.sql.js')
 };
 var logger = require('../utils/logger.js');
 var config = require('../config.js')();
