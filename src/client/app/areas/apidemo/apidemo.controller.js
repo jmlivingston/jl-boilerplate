@@ -7,103 +7,148 @@
     /* @ngInject */
     function ApiDemoController(apiService) {
         var vm = this;
-        vm.dataSources = [{
-            title: 'Firebase',
-            collectionName: 'issues-firebase'
-        }, {
-            title: 'JSON',
-            collectionName: 'issues-json'
-        }, {
-            title: 'MongoDB',
-            collectionName: 'issues-mongo',
-            description: 'This datasource is still being worked on.'
-        }, {
-            title: 'SQL',
-            collectionName: 'issues-sql'
-        }];
 
-        vm.get = function (collectionName, id) {
+        vm.get = function (restRoute, id) {
+            var that = this;
             if (id) {
                 apiService.get({
-                    collectionName: collectionName,
+                    restRoute: restRoute,
                     id: id,
                     promiseValue: {
-                        collectionName: collectionName
+                        restRoute: restRoute
                     }
                 }).then(function (data) {
-                    vm[data.promiseValue.collectionName + '-get-item'] = data.item;
+                    vm[data.promiseValue.restRoute.path + '-get-item'] = data.item;
                 });
             } else {
                 apiService.get({
-                    collectionName: collectionName,
+                    restRoute: restRoute,
                     promiseValue: {
-                        collectionName: collectionName
+                        restRoute: restRoute
                     }
                 }).then(function (data) {
-                    vm[data.promiseValue.collectionName + '-get-items'] = data.items;
+                    vm[data.promiseValue.restRoute.path + '-get-items'] = data.items;
                 });
             }
         };
 
-        vm.post = function (collectionName, postItem) {
+        vm.post = function (restRoute, postItem) {
             apiService.post({
-                collectionName: collectionName,
+                restRoute: restRoute,
                 data: postItem
             }).then(function (data) {
-                vm[collectionName + '-post-item'] = data;
+                vm[restRoute.path + '-post-item'] = data;
                 activate();
             });
         };
 
-        vm.put = function (collectionName, item) {
+        vm.put = function (restRoute, item) {
             apiService.put({
-                collectionName: collectionName,
-                id: item.Id,
+                restRoute: restRoute,
+                id: item[restRoute.identity],
                 data: item
             }).then(function (data) {
-                vm[collectionName + '-put-item'] = data;
-                vm[collectionName + 'putItem'] = {};
+                vm[restRoute.path + '-put-item'] = data;
+                vm[restRoute.path + 'putItem'] = {};
                 activate();
             });
         };
 
-        vm.delete = function (collectionName, id) {
+        vm.delete = function (restRoute, id) {
             apiService.delete({
-                collectionName: collectionName,
+                restRoute: restRoute,
                 id: id,
                 promiseValue: {
-                    collectionName: collectionName
+                    restRoute: restRoute
                 }
             }).then(function (data) {
-                var collectionName = data.promiseValue.collectionName;
-                vm[collectionName + '-get-items'] = vm[collectionName + '-get-items'].filter(function (val) {
-                    return val.Id !== id;
+                var path = data.promiseValue.restRoute.path;
+                vm[path + '-get-items'] = vm[path + '-get-items'].filter(function (val) {
+                    return val[restRoute.identity] !== id;
                 });
                 delete data.promiseValue;
-                vm[collectionName + 'deleteId'] = '';
-                vm[collectionName + 'getId'] = '';
-                vm[collectionName + 'putItem'] = {};
-                vm[collectionName + 'postItem'] = {};
-                vm[collectionName + '-delete-item'] = data;
+                vm[path + 'deleteId'] = '';
+                vm[path + 'getId'] = '';
+                vm[path + 'putItem'] = {};
+                vm[path + 'postItem'] = {};
+                vm[path + '-delete-item'] = data;
+            });
+        };
+
+        vm.testAll = function (restRoute) {
+            var startTime = (new Date()).getTime();
+            var getItem = {};
+            vm[restRoute.path + 'testAll'] = '';
+            apiService.get({
+                restRoute: restRoute
+            }).then(function (data) {
+                if (data.error) {
+                    vm[restRoute.path + 'testAll'] += 'GET - Error\r\n';
+                } else {
+                    vm[restRoute.path + 'testAll'] += 'GET (id:' + (data.items.length).toString() + ' items)\r\n';
+                    apiService.get({
+                        id: data.items[data.items.length - 1][restRoute.identity],
+                        restRoute: restRoute
+                    }).then(function (data) {
+                        getItem = data.item;
+                        if (data.error) {
+                            vm[restRoute.path + 'testAll'] += 'GET (By ID) - Error\r\n';
+                        } else {
+                            vm[restRoute.path + 'testAll'] += 'GET (id:' + getItem[restRoute.identity] + ')\r\n';
+                            apiService.post({
+                                data: getDummyName(),
+                                restRoute: restRoute
+                            }).then(function (data) {
+                                if (data.error) {
+                                    vm[restRoute.path + 'testAll'] += 'POST - Error\r\n';
+                                } else {
+                                    vm[restRoute.path + 'testAll'] += 'POST (id:' + data.id + ')\r\n';
+                                    apiService.put({
+                                        data: getItem,
+                                        id: data.id,
+                                        restRoute: restRoute
+                                    }).then(function (data) {
+                                        if (data.error) {
+                                            vm[restRoute.path + 'testAll'] += 'PUT - Error\r\n';
+                                        } else {
+                                            vm[restRoute.path + 'testAll'] += 'PUT (id:' + data.id + ')\r\n';
+                                            apiService.delete({
+                                                id: data.id,
+                                                restRoute: restRoute
+                                            }).then(function (data) {
+                                                vm[restRoute.path + 'testAll'] += 'DELETE (id:' + data.id + ')\r\n';
+                                                vm[restRoute.path + 'testAll'] += 'Time: ' + ((new Date()).getTime() - startTime).toString() + ' milliseconds';
+                                                activate();
+                                            });
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
             });
         };
 
         function activate() {
-            for (var x = 0; x < vm.dataSources.length; x++) {
-                apiService.get({
-                    collectionName: vm.dataSources[x].collectionName,
-                    promiseValue: {
-                        collectionName: vm.dataSources[x].collectionName
-                    }
-                }).then(function (data) {
-                    vm[data.promiseValue.collectionName + '-get-items'] = data.items;
-                    vm[data.promiseValue.collectionName + 'postItem'] = getDummyName();
-                    vm[data.promiseValue.collectionName + 'putItem'] = {};
+            apiService.getRestRoutes().then(function (data) {
+                vm.restRoutes = data;
+                Object.keys(vm.restRoutes).forEach(function (key) {
+                    apiService.get({
+                        restRoute: vm.restRoutes[key],
+                        promiseValue: {
+                            restRoute: vm.restRoutes[key]
+                        }
+                    }).then(function (data) {
+                        vm[data.promiseValue.restRoute.path + '-get-items'] = data.items;
+                        vm[data.promiseValue.restRoute.path + 'postItem'] = getDummyName();
+                        vm[data.promiseValue.restRoute.path + 'putItem'] = {};
+                    });
                 });
-            }
+            });
         }
 
-        function getDummyName(item) {
+        function getDummyName() {
             var date = new Date();
             var milliseconds = date.getMilliseconds();
             return {

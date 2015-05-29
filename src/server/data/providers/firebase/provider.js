@@ -1,9 +1,10 @@
+
 var q = require('q');
 var https = require('https');
-var config = require('../../config.js')();
-var firebaseUtil = require('../../utils/firebase.js');
-var RestContract = require('../rest.contract.js');
-var logger = require('../../utils/logger.js');
+var config = require('../../../config.js')();
+var firebaseUtil = require('../../../utils/firebase.js');
+var RestContract = require('../../rest.contract.js');
+var logger = require('../../../utils/logger.js');
 
 var service = {
     get: get,

@@ -40,7 +40,8 @@
                 controller: 'ApiDemoController',
                 firebaseKey: 'ApiDemo',
                 title: 'API Demo',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                authRequired: false
             })
             .when('/login', {
                 templateUrl: 'app/areas/account/login.html',

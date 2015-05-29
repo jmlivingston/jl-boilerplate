@@ -1,10 +1,10 @@
 //TODO: This works great locally, but for Heroku and some other host providers we can't simply write to a file.
 //Need to think of a different way to store the json data. S3? NODE_ENV as a hack? Need to determine size limit.
 var q = require('q');
-var io = require('../../utils/io.js');
+var io = require('../../../utils/io.js');
 var jsonBasePath = __dirname + '/data/';
-var RestContract = require('../rest.contract.js');
-var logger = require('../../utils/logger.js');
+var RestContract = require('../../rest.contract.js');
+var logger = require('../../../utils/logger.js');
 
 var service = {
     get: get,

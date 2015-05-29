@@ -1,8 +1,8 @@
 var q = require('q');
 var mongodb = require('mongodb');
-var config = require('../../config.js')();
-var RestContract = require('../rest.contract.js');
-var logger = require('../../utils/logger.js');
+var config = require('../../../config.js')();
+var RestContract = require('../../rest.contract.js');
+var logger = require('../../../utils/logger.js');
 
 var service = {
     get: get,

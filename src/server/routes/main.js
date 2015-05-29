@@ -31,15 +31,18 @@ function init(app) {
     //USER INFO
     app.get('/api/user/:id', userConfig.get);
 
-    config.restRoutes.forEach(function (route) {
-        restRoute.config({
-            app: app,
-            path: config.restRouteBaseUrl + route.path,
-            dataName: route.dataName,
-            provider: route.provider
-        });
+    app.get('/api/restroutes', function(req, res) {
+        res.json(config.restRoutes);
     });
 
+    Object.keys(config.restRoutes).forEach(function (key) {
+        restRoute.config({
+            app: app,
+            path: config.restRouteBaseUrl + '/' + config.restRoutes[key].path,
+            dataName: config.restRoutes[key].dataName,
+            provider: config.restRoutes[key].provider
+        });
+    });
     //app.get('/*', four0four.notFoundMiddleware);
 }
 
@@ -49,10 +52,7 @@ function userGet(request, response) {
 
     firebase.child(userConfig.usersPath + '/' + userId).once('value', success, fail);
 
-    console.log('looking for user ' + userId);
-
     function success(data) {
-        console.log('user found!');
         if (data.val() !== null) {
             var user = data.val();
             response.status(200).send(user);

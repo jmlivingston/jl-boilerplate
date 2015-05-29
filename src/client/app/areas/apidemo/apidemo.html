@@ -2,27 +2,25 @@
     <h1>{{pageStrings.Title}}</h1>
     <div role="tabpanel">
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" ng-class="{ active: $first }" ng-repeat="dataSource in vm.dataSources">
-                <a data-target="#{{dataSource.collectionName}}" aria-controls="{{dataSource.collectionName}}" role="tab" data-toggle="tab">
-                {{dataSource.title}}
+            <li role="presentation" ng-class="{ active: $first }" ng-repeat="(key, restRoute) in vm.restRoutes">
+                <a data-target="#{{restRoute.path}}" aria-controls="{{restRoute.path}}" role="tab" data-toggle="tab">
+                {{restRoute.provider.toUpperCase()}}
             </a>
             </li>
         </ul>
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane" ng-class="{ active: $first }" id="{{dataSource.collectionName}}" ng-repeat="dataSource in vm.dataSources">
+            <div role="tabpanel" class="tab-pane" ng-class="{ active: $first }" id="{{restRoute.path}}" ng-repeat="(key, restRoute) in vm.restRoutes">
                 <br />
-                <p ng-show="dataSource.description">{{dataSource.description}}</p>
                 <!--GET-->
-                <button class="btn btn-success" ng-click="vm.get(dataSource.collectionName)">GET</button>
+                <button class="btn btn-success" ng-click="vm.get(restRoute)">GET</button>
                 <br />
                 <br />
-                <!--<pre class="pre-get">{{vm[dataSource.collectionName + '-get-items']|json}}</pre>-->
                 <div class="table-container">
                     <table class="table table-condensed">
                         <thead>
                             <tr>
                                 <th>
-                                    Id
+                                    {{restRoute.identity}}
                                 </th>
                                 <th>
                                     First Name
@@ -33,9 +31,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in vm[dataSource.collectionName + '-get-items']">
+                            <tr ng-repeat="item in vm[restRoute.path + '-get-items']">
                                 <td>
-                                    {{item.Id}}
+                                    {{item[restRoute.identity]}}
                                 </td>
                                 <td>
                                     {{item.FirstName}}
@@ -47,62 +45,68 @@
                         </tbody>
                     </table>
                 </div>
+                <p>Total: {{vm[restRoute.path + '-get-items'].length}}</p>
                 <br />
                 <!--GET BY ID-->
                 <div class="form-inline">
-                    <button class="btn btn-success" ng-click="vm.get(dataSource.collectionName, vm[dataSource.collectionName + 'getId'])">GET (By ID)</button>
-                    <select class="form-control" ng-model="vm[dataSource.collectionName + 'getId']" ng-options="item.Id as item.Id for item in vm[dataSource.collectionName + '-get-items']">
+                    <button class="btn btn-success" ng-click="vm.get(restRoute, vm[restRoute.path + 'getId'])">GET (By ID)</button>
+                    <select class="form-control" ng-model="vm[restRoute.path + 'getId']" ng-options="item[restRoute.identity] as item[restRoute.identity] for item in vm[restRoute.path + '-get-items']">
                         <option value="">Select ID</option>
                     </select>
                 </div>
                 <br />
-                <pre>{{vm[dataSource.collectionName + '-get-item']||'N/A'}}</pre>
+                <pre>{{vm[restRoute.path + '-get-item']||'N/A'}}</pre>
                 <br />
                 <!--POST-->
                 <div class="form-inline">
-                    <button class="btn btn-warning" ng-click="vm.post(dataSource.collectionName, vm[dataSource.collectionName + 'postItem'])">POST</button>
+                    <button class="btn btn-warning" ng-click="vm.post(restRoute, vm[restRoute.path + 'postItem'])">POST</button>
                     <div class="form-group">
                         <label>{{pageStrings.FirstName}}</label>
-                        <input ng-model="vm[dataSource.collectionName + 'postItem'].FirstName" class="form-control" />
+                        <input ng-model="vm[restRoute.path + 'postItem'].FirstName" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label>{{pageStrings.LastName}}</label>
-                        <input ng-model="vm[dataSource.collectionName + 'postItem'].LastName" class="form-control" />
+                        <input ng-model="vm[restRoute.path + 'postItem'].LastName" class="form-control" />
                     </div>
                 </div>
                 <br />
                 <br />
-                <pre>{{vm[dataSource.collectionName + '-post-item']||'N/A'}}</pre>
+                <pre>{{vm[restRoute.path + '-post-item']||'N/A'}}</pre>
                 <br />
                 <!--PUT-->
                 <div class="form-inline">
-                    <button class="btn btn-primary" ng-click="vm.put(dataSource.collectionName, vm[dataSource.collectionName + 'putItem'])">PUT</button>
-                    <select class="form-control" ng-model="vm[dataSource.collectionName + 'putItem']" ng-options="item as item.Id for item in vm[dataSource.collectionName + '-get-items']">
+                    <button class="btn btn-primary" ng-click="vm.put(restRoute, vm[restRoute.path + 'putItem'])">PUT</button>
+                    <select class="form-control" ng-model="vm[restRoute.path + 'putItem']" ng-options="item as item[restRoute.identity] for item in vm[restRoute.path + '-get-items']">
                         <option value="">Select ID</option>
                     </select>
                     <div class="form-group">
                         <label>{{pageStrings.FirstName}}</label>
-                        <input ng-model="vm[dataSource.collectionName + 'putItem'].FirstName" class="form-control" />
+                        <input ng-model="vm[restRoute.path + 'putItem'].FirstName" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label>{{pageStrings.LastName}}</label>
-                        <input ng-model="vm[dataSource.collectionName + 'putItem'].LastName" class="form-control" />
+                        <input ng-model="vm[restRoute.path + 'putItem'].LastName" class="form-control" />
                     </div>
                 </div>
                 <br />
                 <br />
-                <pre>{{vm[dataSource.collectionName + '-put-item']||'N/A'}}</pre>
+                <pre>{{vm[restRoute.path + '-put-item']||'N/A'}}</pre>
                 <br />
                 <!--DELETE-->
                 <div class="form-inline">
-                    <button class="btn btn-danger" ng-click="vm.delete(dataSource.collectionName, vm[dataSource.collectionName + 'deleteId'])">DELETE</button>
-                    <select class="form-control" ng-model="vm[dataSource.collectionName + 'deleteId']" ng-options="item.Id as item.Id for item in vm[dataSource.collectionName + '-get-items']">
+                    <button class="btn btn-danger" ng-click="vm.delete(restRoute, vm[restRoute.path + 'deleteId'])">DELETE</button>
+                    <select class="form-control" ng-model="vm[restRoute.path + 'deleteId']" ng-options="item[restRoute.identity] as item[restRoute.identity] for item in vm[restRoute.path + '-get-items']">
                         <option value="">Select ID</option>
                     </select>
                 </div>
                 <br />
                 <br />
-                <pre>{{vm[dataSource.collectionName + '-delete-item']||'N/A'}}</pre>
+                <pre>{{vm[restRoute.path + '-delete-item']||'N/A'}}</pre>
+                <br />
+                <button class="btn btn-info" ng-click="vm.testAll(restRoute)">Test All (Synchronous)</button>
+                <br />
+                <br />
+                <textarea class="form-control" ng-model="vm[restRoute.path + 'testAll']"></textarea>
             </div>
         </div>
     </div>

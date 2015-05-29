@@ -2,9 +2,9 @@ var q = require('q');
 var tedious = require('tedious');
 var Request = tedious.Request;
 var Connection = tedious.Connection;
-var config = require('../../config.js')();
-var RestContract = require('../rest.contract.js');
-var logger = require('../../utils/logger.js');
+var config = require('../../../config.js')();
+var RestContract = require('../../rest.contract.js');
+var logger = require('../../../utils/logger.js');
 
 var connectionConfig = {
     userName: config.dataProviders.sql.user,
@@ -147,7 +147,7 @@ function put(tableName, item) {
             }
         }).join('');
         sql += set.substr(0, set.length - 1);
-        sql += ' where Id = ' + item.Id;
+        sql += ' where Id = ' + item.ID;
 
         console.log('SQL - ' + sql);
 

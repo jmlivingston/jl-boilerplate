@@ -24,23 +24,32 @@ module.exports = function () {
             }
         },
         restRouteBaseUrl: '/api',
-        restRoutes: [{
-                path: '/issues-firebase',
+        restRoutes: {
+            IssuesFirebase: {
+                path: 'issues-firebase',
                 dataName: 'Issues',
-                provider: 'firebase'
-            }, {
-                path: '/issues-json',
+                provider: 'firebase',
+                identity: 'Id'
+            },
+            IssuesJson: {
+                path: 'issues-json',
                 dataName: 'Issues',
-                provider: 'json'
-            }, {
-                path: '/issues-mongo',
+                provider: 'json',
+                identity: 'Id'
+            },
+            IssuesMongo: {
+                path: 'issues-mongo',
                 dataName: 'Issues',
-                provider: 'mongo'
-            }, {
-                path: '/issues-sql',
+                provider: 'mongo',
+                identity: '_id'
+            },
+            IssuesSql: {
+                path: 'issues-sql',
                 dataName: 'Issues',
-                provider: 'sql'
-            }]
+                provider: 'sql',
+                identity: 'ID'
+            }
+        }
     };
     return config;
 };
