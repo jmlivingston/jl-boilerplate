@@ -15,7 +15,7 @@
         vm.initialized = false;
         vm.updateSeoImage = updateSeoImage;
 
-        $scope.$on('activeAdminTab4', activate);
+        $scope.$on('activeAdminTab3', activate);
         if ($cookies.activeAdminTab === '3') {
             activate();
         }

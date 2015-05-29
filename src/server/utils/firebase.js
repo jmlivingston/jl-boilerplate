@@ -7,9 +7,9 @@ var service = {
 var items = [];
 
 function objToArray(obj, identity) {
-    console.log('id - ' + identity);
     items = [];
     //TODO: Really hate this, but trying to keep Firebase consistent with other data sources which have an Id in the record
+    //Funny thing is this still smokes MongoDB and SQL in initial performance tests
     var deferred = q.defer();
     var promises = Object.keys(obj).map(function (value, index) {
         return getObj(value, obj[value], identity);
