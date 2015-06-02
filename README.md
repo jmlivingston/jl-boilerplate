@@ -20,22 +20,20 @@
 ## Prerequisites
 
 1. Install [Node.js](http://nodejs.org)
- - on OSX use [homebrew](http://brew.sh) `brew install node`
- - on Windows use [chocolatey](https://chocolatey.org/) `choco install nodejs`
 
-2. Install Yeoman `npm install -g yo`
-
-3. Install these NPM packages globally
+2. Install node and bower dependencies
 
     ```bash
-    npm install -g bower gulp nodemon`
+    npm install
+    bower install
     ```
 
-    >Refer to these [instructions on how to not require sudo](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md)
+3. Create a Firebase instance and copy the URL and token to server/constants.js
 
-4. Create a Firebase instance and copy the URL and token to server/constants.js
+4. If using Heroku, you can create a QA and/or PROD environment. There are some gulp tasks (see below) for easy deployment. Otherwise, deployment files are copied to the deploy folder and can be easily deployed on a different Node environment.
 
-5. If using Heroku, you can create a QA and/or PROD environment. There are some gulp tasks (see below) for easy deployment. Otherwise, deployment files are copied to the deploy folder and can be easily deployed on a different Node environment.
+## TODOs
+ - See Trello - [jl-boilerplate](https://trello.com/b/nDgTYxdB/jl-boilerplate)
 
 ## Running jl-boilerplate
 

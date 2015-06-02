@@ -121,10 +121,6 @@
             return deferred.promise;
         }
 
-        function userDelete() {
-
-        }
-
         function userList() {
             return $http.get('/api/users/list')
                 .then(success)
