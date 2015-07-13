@@ -15,7 +15,7 @@
             userCreate: userCreate,
             userGet: userGet,
             userSet: userSet,
-            userDelete: userDelete,
+            //userDelete: userDelete,
             userList: userList,
             login: login,
             logout: logout,
